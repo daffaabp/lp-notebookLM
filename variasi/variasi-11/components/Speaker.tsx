@@ -8,7 +8,7 @@ const Speaker: React.FC = () => {
         <div className="relative">
           <div className="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-primary shadow-lg relative z-10">
             <img 
-              src="https://picsum.photos/400/400" 
+              src="/speaker/arianto.avif" 
               alt="M. Arianto" 
               className="w-full h-full object-cover"
             />

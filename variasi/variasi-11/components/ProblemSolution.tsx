@@ -6,11 +6,22 @@ const ProblemSolution: React.FC = () => {
     <section className="py-16 container mx-auto px-4">
       <div className="bg-red-50 p-8 rounded-2xl border-l-8 border-primary mb-12 shadow-sm">
         <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
-          Dilema Ibu Rumah Tangga Modern 2025
+          Pernah Merasakan Ini, Bu?
         </h2>
-        <p className="text-lg text-gray-700 leading-relaxed">
-          Pusing menjelaskan materi sekolah anak yang semakin susah? Bingung menyimpan riwayat kesehatan keluarga yang berantakan di berbagai rumah sakit? Atau lelah harus membaca berlembar-lembar petunjuk rumah tangga? Ibu tidak sendirian. Kelebihan informasi (<em>information overload</em>) sering membuat kita stres dan kehilangan waktu berharga bersama keluarga.
-        </p>
+        <ul className="space-y-3 text-lg text-gray-700 leading-relaxed pl-0 list-none">
+          <li>
+            <span className="inline-block mr-2 text-primary">🤯</span>
+            <strong>Materi sekolah anak makin susah?</strong> Tiap hari ada saja pelajaran baru yang bahkan Ibu sendiri harus googling dulu sebelum bisa jelasin.
+          </li>
+          <li>
+            <span className="inline-block mr-2 text-primary">🥴</span>
+            <strong>Capek harus ingat semua kebutuhan rumah?</strong> Dari jadwal vaksin anak, belanja bulanan, sampai resep masakan, semua tercecer di catatan yang berbeda-beda.
+          </li>
+          <li>
+            <span className="inline-block mr-2 text-primary">⏳</span>
+            <strong>Waktu untuk keluarga makin terkikis?</strong> Alih-alih santai bareng, justru habis untuk mencari dan memahami informasi yang tercecer di mana-mana.
+          </li>
+        </ul>
       </div>
 
       <div className="grid md:grid-cols-2 gap-8">

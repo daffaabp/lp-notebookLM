@@ -1,28 +1,33 @@
 import React, { useState, useEffect } from 'react';
-import { CheckCircle, Gift, Clock } from 'lucide-react';
+import { CheckCircle, Clock, Shield } from 'lucide-react';
 
 const RegistrationForm: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
   const [timeLeft, setTimeLeft] = useState({
-    days: 0,
     hours: 0,
     minutes: 0,
     seconds: 0,
   });
 
-  // Target date: Dec 27, 2025 19:00:00 WIB (UTC+7)
-  const targetDate = new Date('2025-12-27T19:00:00+07:00').getTime();
-
   useEffect(() => {
+    // Set target date to 2 hours from now
+    const setTargetDate = () => {
+      const now = new Date();
+      const targetDate = new Date(now.getTime() + 2 * 60 * 60 * 1000); // 2 hours from now
+      return targetDate.getTime();
+    };
+
+    const targetDate = setTargetDate();
+
     const timer = setInterval(() => {
       const now = new Date().getTime();
       const distance = targetDate - now;
 
       if (distance < 0) {
         clearInterval(timer);
+        setTimeLeft({ hours: 0, minutes: 0, seconds: 0 });
       } else {
         setTimeLeft({
-          days: Math.floor(distance / (1000 * 60 * 60 * 24)),
           hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
           minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
           seconds: Math.floor((distance % (1000 * 60)) / 1000),
@@ -31,7 +36,7 @@ const RegistrationForm: React.FC = () => {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [targetDate]);
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -40,9 +45,9 @@ const RegistrationForm: React.FC = () => {
   };
 
   const TimeUnit: React.FC<{ value: number; label: string }> = ({ value, label }) => (
-    <div className="flex flex-col items-center bg-white/20 backdrop-blur-md border border-white/30 rounded-lg p-3 min-w-[70px] md:min-w-[80px]">
-      <span className="text-2xl md:text-3xl font-bold font-mono">{value.toString().padStart(2, '0')}</span>
-      <span className="text-xs uppercase tracking-wider opacity-80">{label}</span>
+    <div className="flex flex-col items-center bg-white/95 backdrop-blur-md border-2 border-red-500 rounded-lg p-3 min-w-[70px] md:min-w-[80px] shadow-lg">
+      <span className="text-2xl md:text-3xl font-bold font-mono text-red-600">{value.toString().padStart(2, '0')}</span>
+      <span className="text-xs uppercase tracking-wider text-red-600 font-semibold">{label}</span>
     </div>
   );
 
@@ -70,37 +75,49 @@ const RegistrationForm: React.FC = () => {
   return (
     <section id="daftar" className="py-16 container mx-auto px-4">
       <div className="bg-primary text-white p-8 md:p-16 rounded-3xl text-center shadow-xl max-w-3xl mx-auto">
-        <h2 className="text-3xl font-bold mb-2">Daftar Webinar Gratis</h2>
-        <p className="text-lg mb-8 opacity-90">Amankan kursi Ibu sebelum kuota penuh!</p>
+        <h2 className="text-3xl font-bold mb-2">Daftar Webinar</h2>
+        
+        {/* Pricing */}
+        <div className="mb-6 flex flex-col items-center gap-2">
+          <div className="flex items-center gap-3">
+            <span className="text-xl md:text-2xl text-white/70 line-through">Rp 499.000</span>
+            <span className="text-2xl md:text-3xl font-bold text-gold">Rp 129.000</span>
+          </div>
+        </div>
         
         {/* Countdown Timer */}
         <div className="mb-10">
-          <div className="flex items-center justify-center gap-2 mb-3 text-gold font-bold bg-black/20 inline-block px-4 py-1 rounded-full text-sm">
+          <div className="flex items-center justify-center gap-2 mb-3 text-white font-bold bg-red-600/90 border-2 border-red-500 inline-block px-4 py-1 rounded-full text-sm shadow-lg">
              <Clock className="w-4 h-4" />
              <span>PENDAFTARAN DITUTUP DALAM:</span>
           </div>
-          <div className="flex justify-center gap-3 md:gap-4 text-white">
-            <TimeUnit value={timeLeft.days} label="Hari" />
+          <div className="flex justify-center gap-3 md:gap-4">
             <TimeUnit value={timeLeft.hours} label="Jam" />
             <TimeUnit value={timeLeft.minutes} label="Menit" />
             <TimeUnit value={timeLeft.seconds} label="Detik" />
           </div>
         </div>
 
-        <p className="text-lg mb-6">Khusus pendaftaran hari ini, Ibu akan mendapatkan:</p>
-        
-        <div className="bg-white/20 backdrop-blur-sm border border-white/40 p-6 rounded-xl mb-10 text-left inline-block w-full max-w-lg">
-          <div className="flex items-start mb-3">
-             <Gift className="w-6 h-6 mr-3 flex-shrink-0 text-gold" />
-             <span><strong>BONUS:</strong> Template Prompt Khusus IRT (Tanya PR, Cek Gizi, & Meal Plan)</span>
-          </div>
-          <div className="flex items-start">
-             <Gift className="w-6 h-6 mr-3 flex-shrink-0 text-gold" />
-             <span><strong>BONUS:</strong> E-book Panduan Praktis AI untuk Rumah Tangga</span>
-          </div>
+        {/* 3 Arrow Down with Blink Animation */}
+        <div className="flex justify-center items-center gap-2 mb-4 -mt-2">
+          <img 
+            src="/assets/right-arrow.avif"
+            alt="Arrow down"
+            className="w-10 h-7 md:w-14 md:h-9 arrow-blink rotate-90"
+          />
+          <img 
+            src="/assets/right-arrow.avif"
+            alt="Arrow down"
+            className="w-10 h-7 md:w-14 md:h-9 arrow-blink rotate-90"
+          />
+          <img 
+            src="/assets/right-arrow.avif"
+            alt="Arrow down"
+            className="w-10 h-7 md:w-14 md:h-9 arrow-blink rotate-90"
+          />
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto">
+        <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto mt-8">
           <input 
             type="text" 
             placeholder="Nama Lengkap Ibu" 
@@ -124,14 +141,28 @@ const RegistrationForm: React.FC = () => {
             type="submit" 
             className="w-full bg-gold text-dark py-4 rounded-lg font-bold text-xl shadow-lg hover:bg-yellow-400 hover:scale-105 transition-all duration-300 mt-4"
           >
-            Daftar & Klaim Bonus
+            DAFTAR SEKARANG
           </button>
-        </form>
 
-        <p className="text-sm mt-8 opacity-90 max-w-lg mx-auto leading-relaxed bg-black/10 p-4 rounded-lg">
-          🛡️ <strong>100% Value Guarantee:</strong> Jika dalam 30 menit pertama Ibu merasa webinar ini tidak bermanfaat untuk mempermudah hidup Ibu, silakan tinggalkan ruang Zoom dan Ibu tetap boleh menyimpan bonus materinya.
-        </p>
+          {/* Payment Security */}
+          <div className="mt-4 space-y-2">
+            <div className="flex items-center justify-center gap-2 text-sm text-white/90">
+              <Shield className="w-4 h-4 text-gold" />
+              <span>Pembayaran 100% Aman & Terjamin</span>
+            </div>
+          </div>
+        </form>
       </div>
+
+      <style>{`
+        @keyframes blink {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.2; }
+        }
+        .arrow-blink {
+          animation: blink 1s infinite;
+        }
+      `}</style>
     </section>
   );
 };

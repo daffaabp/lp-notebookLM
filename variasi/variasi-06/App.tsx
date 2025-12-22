@@ -50,10 +50,6 @@ function App() {
       {/* HERO SECTION */}
       <header className="hero-gradient pt-16 pb-24 px-4 border-b-8 border-pink-500">
         <div className="max-w-6xl mx-auto text-center">
-          <div className="inline-block bg-pink-200 text-pink-700 px-6 py-2 rounded-full text-sm font-bold tracking-widest uppercase mb-8 border border-pink-300">
-            Exclusive Masterclass for Smart Moms
-          </div>
-
           <h1 className="text-3xl md:text-6xl font-black mb-8 leading-tight text-[#be185d]">
             Sudah Lelah Jadi "Super Mom"? Masak Belum Kelar, Anak Sudah Teriak Minta Diajarin PR yang Bundanya Sendiri Bingung?
           </h1>

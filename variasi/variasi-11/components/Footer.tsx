@@ -5,7 +5,7 @@ const Footer: React.FC = () => {
     <footer className="bg-white border-t border-gray-200 py-10">
       <div className="container mx-auto px-4 text-center">
         <p className="text-gray-500 text-sm mb-2">
-          &copy; {new Date().getFullYear()} Webinar IRT Cerdas - Didukung oleh M. Arianto &amp; NotebookLM.
+          &copy; {new Date().getFullYear()} Kelas Inovatif - Didukung oleh M. Arianto &amp; NotebookLM.
         </p>
         <p className="text-gray-400 text-xs mb-4">
           Semua hak cipta dilindungi.

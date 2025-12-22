@@ -4,6 +4,7 @@ import ProblemSolution from './components/ProblemSolution';
 import MiddleCTA from './components/MiddleCTA';
 import Speaker from './components/Speaker';
 import Testimonials from './components/Testimonials';
+import Bonus from './components/Bonus';
 import RegistrationForm from './components/RegistrationForm';
 import FAQ from './components/FAQ';
 import Footer from './components/Footer';
@@ -75,6 +76,7 @@ const App: React.FC = () => {
         <MiddleCTA />
         <Speaker />
         <Testimonials />
+        <Bonus />
         <RegistrationForm />
         <FAQ />
       </main>

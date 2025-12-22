@@ -37,6 +37,15 @@ const Hero: React.FC = () => {
                 </div>
             </div>
         </div>
+
+        {/* Pricing */}
+        <div className="mb-8 flex flex-col items-center gap-2">
+          <div className="flex items-center gap-3">
+            <span className="text-2xl md:text-3xl text-gray-400 line-through">Rp 499.000</span>
+            <span className="text-3xl md:text-4xl font-bold text-primary">Rp 129.000</span>
+          </div>
+          <p className="text-sm text-gray-500">Harga khusus untuk peserta webinar</p>
+        </div>
         
         <a 
           href="#daftar" 
