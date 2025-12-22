@@ -3,11 +3,6 @@ import React from 'react';
 const Header: React.FC = () => {
   return (
     <>
-      {/* URGENCY BAR */}
-      <div className="bg-orange-600 text-white text-center py-2 text-sm font-bold sticky top-0 z-50 shadow-md">
-        🔥 Penawaran Akhir Tahun: Slot Zoom Terbatas untuk 100 Peserta Pertama!
-      </div>
-
       {/* HERO SECTION */}
       <header className="business-gradient text-white pt-16 pb-24 px-4 border-b-8 border-orange-500 relative overflow-hidden">
         {/* Background Accent */}
@@ -16,11 +11,11 @@ const Header: React.FC = () => {
         <div className="max-w-6xl mx-auto text-center relative z-10">
           {/* HOOK UTAMA */}
           <h1 className="text-3xl md:text-5xl font-black mb-8 leading-tight">
-            "Jujur Saja: Berapa Banyak Insight Mahal yang Akhirnya <span className="text-orange-500 italic">'Menguap'</span> Karena Terkubur di Ribuan PDF, Slide Presentasi & Chat Group?"
+            "Berapa Banyak Keputusan Bisnis yang Gagal Karena <span className="text-orange-500 italic">Data Penting Terkubur</span> di Ribuan Laporan, PDF, & Slide Presentasi?"
           </h1>
           
           <h2 className="text-lg md:text-2xl font-medium text-slate-300 mb-10 max-w-4xl mx-auto leading-relaxed">
-            Analisa manual itu <strong>mahal & lelet</strong>. Biarkan <strong className="text-blue-400">NotebookLM</strong> "menambang" tumpukan laporan bisnis Anda, <span className="text-orange-300 font-semibold">bebas halusinasi</span>, dan temukan "harta karun" data sebelum kompetitor.
+            NotebookLM bantu tim Anda temukan insight penting dari laporan dengan cepat, tanpa repot dan tanpa risiko halusinasi.
           </h2>
           
           <div className="bg-white/10 backdrop-blur-md p-6 rounded-3xl border border-white/20 inline-flex flex-col md:flex-row gap-8 items-center shadow-2xl mb-12 hover:bg-white/15 transition-all">

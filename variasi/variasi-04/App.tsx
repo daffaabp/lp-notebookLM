@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import PainPoints from './components/PainPoints';
 import Solution from './components/Solution';
-import Results from './components/Results';
-import SocialProof from './components/SocialProof';
 import { BonusFasilitas } from './components/BonusFasilitas';
+import Guarantee from './components/Guarantee';
 import Registration from './components/Registration';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
 import { PrivacyPolicy } from './components/PrivacyPolicy';
 import { TermsOfService } from './components/TermsOfService';
+import Testimonials from './components/Testimonials';
 
 const App: React.FC = () => {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
@@ -45,9 +45,9 @@ const App: React.FC = () => {
       <main className="flex-grow">
         <PainPoints />
         <Solution />
-        <Results />
-        <SocialProof />
         <BonusFasilitas />
+        <Guarantee />
+        <Testimonials />
         <Registration />
       </main>
       <Footer />

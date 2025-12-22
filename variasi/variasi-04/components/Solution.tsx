@@ -2,10 +2,10 @@ import React from 'react';
 
 const Solution: React.FC = () => {
   const benefits = [
-    "Pangkas waktu riset pasar & kompetitor hingga 75% lebih cepat.",
-    "Bangun \"Second Brain\" korporasi agar pengetahuan tidak hilang.",
-    "Otomasi analisis data dari ribuan laporan bisnis.",
-    "Visualisasi insight strategis dengan peta konsep interaktif."
+    "Identifikasi insight tersembunyi di tumpukan data bisnis tanpa repot.",
+    "Buat repositori pengetahuan tim yang mudah dicari dan berbagi.",
+    "Analisa laporan, PDF, dan presentasi secara otomatis & efisien.",
+    "Presentasikan insight penting dengan visual yang mudah dipahami."
   ];
 
   return (
@@ -36,30 +36,6 @@ const Solution: React.FC = () => {
                 </li>
               ))}
             </ul>
-          </div>
-          <div className="space-y-6">
-            <div className="bg-white p-6 rounded-2xl shadow-md flex items-start gap-6 hover:shadow-lg transition-shadow border border-slate-100">
-              <div className="bg-orange-100 p-4 rounded-xl text-orange-600 shrink-0">
-                <i className="fas fa-search text-2xl"></i>
-              </div>
-              <div>
-                <h6 className="font-black text-slate-900 mb-2">Pencarian Cerdas Multi-Dokumen</h6>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  Temukan insight, data, atau referensi spesifik dari ribuan dokumen bisnis dalam hitungan detik dengan pencarian semantik yang memahami konteks korporat.
-                </p>
-              </div>
-            </div>
-            <div className="bg-white p-6 rounded-2xl shadow-md flex items-start gap-6 hover:shadow-lg transition-shadow border border-slate-100">
-              <div className="bg-orange-100 p-4 rounded-xl text-orange-600 shrink-0">
-                <i className="fas fa-headphones text-2xl"></i>
-              </div>
-              <div>
-                <h6 className="font-black text-slate-900 mb-2">Audio Briefing Interaktif</h6>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  Dengarkan ringkasan laporan bisnis dalam format podcast saat perjalanan atau saat review strategis di waktu senggang.
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </div>

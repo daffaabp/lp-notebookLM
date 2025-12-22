@@ -7,12 +7,17 @@ export const BonusFasilitas: React.FC = () => {
         <div className="bg-gradient-to-br from-blue-900 via-blue-800 to-slate-900 rounded-2xl p-6 md:p-8 border-4 border-orange-500 shadow-xl">
           
           {/* Header */}
-          <div className="flex items-center justify-between mb-6 pb-4 border-b-2 border-orange-500">
-            <div className="flex gap-3">
+          <div className="flex flex-col md:flex-row items-center justify-between mb-6 pb-4 border-b-2 border-orange-500 gap-3 md:gap-0">
+            <div className="flex gap-3 items-center">
               <span className="bg-blue-500 text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase">FASILITAS</span>
               <span className="bg-orange-600 text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase">BONUS</span>
             </div>
-            <span className="text-yellow-300 font-black text-lg md:text-xl">Rp 799.000</span>
+            <div className="flex flex-col md:items-end items-center mt-2 md:mt-0">
+              <span className="text-yellow-300 font-black text-lg md:text-xl">
+                Total Bonus Senilai <span className="underline decoration-orange-400">Rp 799.000</span>
+              </span>
+              <span className="text-green-400 text-xs font-bold uppercase tracking-widest">GRATIS untuk peserta!</span>
+            </div>
           </div>
 
           {/* Content Grid */}

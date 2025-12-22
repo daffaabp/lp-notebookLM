@@ -42,19 +42,6 @@ const Registration: React.FC = () => {
 
     return (
         <>
-            {/* MONEY BACK GUARANTEE */}
-            <section className="py-16 bg-blue-50 text-center px-4">
-                <div className="max-w-3xl mx-auto border-4 border-dashed border-blue-200 p-10 rounded-3xl bg-white/50 backdrop-blur-sm">
-                    <div className="text-6xl text-blue-600 mb-6 animate-bounce duration-[2000ms]">
-                        <i className="fas fa-shield-check"></i>
-                    </div>
-                    <h3 className="text-2xl font-black text-slate-900 mb-4 uppercase tracking-tighter">Garansi Uang Kembali 100% (No Questions Asked)</h3>
-                    <p className="text-slate-600 text-lg leading-relaxed font-medium">
-                        Jika dalam 60 menit pertama webinar Anda merasa tidak mendapatkan taktik baru untuk meningkatkan produktivitas strategi Anda, kami kembalikan uang Anda 100%. Kami menjamin efisiensi atau uang kembali.
-                    </p>
-                </div>
-            </section>
-
             {/* REGISTRATION FORM SECTION */}
             <section id="register" className="py-24 px-4 business-gradient relative">
                 <div className="max-w-xl mx-auto bg-white rounded-3xl p-10 shadow-2xl relative overflow-hidden ring-4 ring-white/10" id="registration-form">

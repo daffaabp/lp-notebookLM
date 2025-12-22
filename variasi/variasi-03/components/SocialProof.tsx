@@ -15,10 +15,10 @@ const SocialProof: React.FC = () => {
         </h3>
 
         <div className="flex flex-wrap justify-center gap-3 md:gap-4">
-          <LogoPlaceholder label={<span className="text-black">Universitas Negeri</span>} />
-          <LogoPlaceholder label={<span className="text-black">Universitas Swasta</span>} />
-          <LogoPlaceholder label={<span className="text-black">Politeknik</span>} />
-          <LogoPlaceholder label={<span className="text-black">Instansi Pemerintah</span>} />
+          <LogoPlaceholder label="Universitas Negeri" />
+          <LogoPlaceholder label="Universitas Swasta" />
+          <LogoPlaceholder label="Politeknik" />
+          <LogoPlaceholder label="Instansi Pemerintah" />
         </div>
       </div>
     </section>

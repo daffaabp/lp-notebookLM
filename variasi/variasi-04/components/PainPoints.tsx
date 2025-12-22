@@ -3,16 +3,16 @@ import React from 'react';
 const PainPoints: React.FC = () => {
   const painPoints = [
     {
-      title: "Insight Terkubur di Ribuan PDF & Slide",
-      description: "Data penting tersebar di berbagai dokumen, email, dan chat group—sulit ditemukan saat dibutuhkan dan sering terlewat."
+      title: "Insight Penting Terkubur di Lautan Data",
+      description: "Keputusan bisnis sering gagal karena insights tersembunyi di ribuan laporan, PDF, atau presentasi—sulit dicari dan mudah terlewat saat dibutuhkan."
     },
     {
-      title: "Analisa Manual Mahal & Lambat",
-      description: "Review manual laporan bisnis memakan waktu berhari-hari, rawan human error, dan menghabiskan sumber daya tim."
+      title: "Waktu & Energi Habis untuk Mencari Data",
+      description: "Tim strategis harus menghabiskan banyak jam membaca manual, menelusuri file demi file, yang akhirnya memperlambat proses analisa & pengambilan keputusan."
     },
     {
-      title: "Pengetahuan Perusahaan Hilang Saat Karyawan Keluar",
-      description: "Informasi penting hanya ada di kepala individu, tidak terdokumentasi dengan baik, dan hilang saat terjadi turnover."
+      title: "Risiko Halusinasi & Human Error",
+      description: "Tanpa sistem pencarian cerdas, proses menemukan data relevan rentan salah tafsir dan sering menyebabkan keputusan didasarkan pada asumsi, bukan fakta."
     }
   ];
 
