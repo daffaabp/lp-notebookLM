@@ -20,8 +20,8 @@ const Footer: React.FC = () => {
                 </a>
             </div>
             <div className="flex justify-center gap-6 mt-6 text-sm text-gray-500">
-                <a href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</a>
-                <a href="/terms-of-service" className="hover:text-white transition-colors">Terms of Service</a>
+                <a href="?page=privacy-policy" className="hover:text-white transition-colors">Kebijakan Privasi</a>
+                <a href="?page=terms-of-service" className="hover:text-white transition-colors">Syarat & Ketentuan</a>
             </div>
         </div>
     </footer>

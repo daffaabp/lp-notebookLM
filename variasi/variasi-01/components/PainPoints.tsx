@@ -3,16 +3,16 @@ import React from 'react';
 const PainPoints: React.FC = () => {
   const points = [
     {
-      title: "Analisis Paralisis",
-      desc: "Merasa beku saat harus menyintesis puluhan naskah PDF secara bersamaan karena batas kognitif memori kerja manusia yang terbatas.",
+      title: "Terlalu Banyak Bacaan",
+      desc: "Bingung harus mulai dari mana saat harus membaca dan memahami tumpukan jurnal atau PDF dalam waktu singkat.",
     },
     {
-      title: "Trauma Halusinasi AI",
-      desc: "Takut menggunakan AI konvensional yang sering mengarang kutipan fiktif (halusinasi) yang bisa merusak kredibilitas ilmiah Anda.",
+      title: "Takut AI Ngaco",
+      desc: "Pernah coba pakai AI tapi malah dikasih jawaban ngawur atau sumber palsu? Jadinya malah makin ragu pakai AI.",
     },
     {
-      title: "Kelelahan Mental",
-      desc: "Membaca jurnal 30 halaman terasa seperti mendaki Everest secara mental setiap hari, memicu burnout akademik yang nyata.",
+      title: "Cepat Lelah dan Burnout",
+      desc: "Niatnya produktif, tapi karena harus baca dan rangkum sendiri terus-menerus, jadi cepat capek, bosan, bahkan kehilangan semangat.",
     }
   ];
 
@@ -31,7 +31,7 @@ const PainPoints: React.FC = () => {
                 </div>
                 <div className="flex-1">
                   <h3 className="font-bold text-lg mb-2 text-red-900">{point.title}</h3>
-                  <p className="text-gray-700 text-sm leading-relaxed">{point.desc}</p>
+                  <p className="text-gray-700 text-base leading-relaxed">{point.desc}</p>
                 </div>
               </div>
             </div>
