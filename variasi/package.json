@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "private": true,
     "scripts": {
-        "dev": "concurrently -c \"auto\" --kill-others-on-fail -n \"MAIN,VAR1,VAR2,VAR3,VAR4,VAR5,VAR6,VAR7\" \"bun run dev:main\" \"bun run dev:01\" \"bun run dev:02\" \"bun run dev:03\" \"bun run dev:04\" \"bun run dev:05\" \"bun run dev:06\" \"bun run dev:07\"",
+        "dev": "concurrently -c \"auto\" --kill-others-on-fail -n \"MAIN,VAR1,VAR2,VAR3,VAR4,VAR5,VAR6,VAR7,VAR8,VAR9   ,VAR10,VAR11\" \"bun run dev:main\" \"bun run dev:01\" \"bun run dev:02\" \"bun run dev:03\" \"bun run dev:04\" \"bun run dev:05\" \"bun run dev:06\" \"bun run dev:07\" \"bun run dev:08\" \"bun run dev:09\" \"bun run dev:10\" \"bun run dev:11\"",
         "dev:main": "vite --port 3000",
         "dev:01": "cd variasi-01 && bun run dev --port 3001",
         "dev:02": "cd variasi-02 && bun run dev --port 3002",
@@ -11,7 +11,11 @@
         "dev:04": "cd variasi-04 && bun run dev --port 3004",
         "dev:05": "cd variasi-05 && bun run dev --port 3005",
         "dev:06": "cd variasi-06 && bun run dev --port 3006",
-        "dev:07": "cd variasi-07 && bun run dev --port 3007"
+        "dev:07": "cd variasi-07 && bun run dev --port 3007",
+        "dev:08": "cd variasi-08 && bun run dev --port 3008",
+        "dev:09": "cd variasi-09 && bun run dev --port 3009",
+        "dev:10": "cd variasi-10 && bun run dev --port 3010",
+        "dev:11": "cd variasi-11 && bun run dev --port 3011"
     },
     "devDependencies": {
         "@prisma/config": "^7.2.0",
