@@ -1,5 +1,21 @@
 import React, { useState } from 'react';
-import { FAQS } from '../constants';
+import { ChevronDown, ChevronUp } from 'lucide-react';
+import { FaqItem } from '../types';
+
+const faqData: FaqItem[] = [
+  {
+    question: "Apakah saya akan mendapatkan rekaman webinar?",
+    answer: "Ya, Anda akan mendapatkan akses rekaman seumur hidup dan materi presentasi eksklusif di dalam dashboard peserta."
+  },
+  {
+    question: "Apakah materi ini cocok bagi pemula yang gaptek?",
+    answer: "Sangat cocok. Kami menggunakan bahasa Indonesia yang sederhana dan teknis yang mudah dipraktikkan tanpa perlu coding."
+  },
+  {
+    question: "Apakah saya harus berlangganan AI berbayar?",
+    answer: "Tidak perlu. Teknik yang kami ajarkan tetap bisa dilakukan menggunakan tools versi gratis yang tersedia."
+  }
+];
 
 const FAQ: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -9,29 +25,37 @@ const FAQ: React.FC = () => {
   };
 
   return (
-    <section className="py-24 px-4 bg-white">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-16 uppercase italic underline decoration-orange-500 underline-offset-8">
-          Pertanyaan Umum (FAQ)
-        </h2>
+    <section className="py-20 bg-slate-50">
+      <div className="container mx-auto px-4 max-w-3xl">
+        <h2 className="text-3xl font-bold text-center text-dark mb-12">Tanya Jawab (FAQ)</h2>
+        
         <div className="space-y-4">
-          {FAQS.map((faq, index) => (
-            <div key={index} className="border-b-2 border-slate-50 pb-6 group">
+          {faqData.map((item, index) => (
+            <div 
+              key={index} 
+              className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden transition-all duration-300"
+            >
               <button 
                 onClick={() => toggleFAQ(index)}
-                className="w-full text-left flex justify-between items-center focus:outline-none"
+                className="w-full flex items-center justify-between p-6 text-left focus:outline-none"
               >
-                <h4 className={`font-black text-xl mb-3 transition-colors duration-200 ${openIndex === index ? 'text-orange-600' : 'text-purple-900 group-hover:text-orange-500'}`}>
-                  {faq.question}
-                </h4>
-                <span className="text-purple-300">
-                  <i className={`fas ${openIndex === index ? 'fa-minus' : 'fa-plus'}`}></i>
+                <span className={`font-bold text-lg ${openIndex === index ? 'text-primary' : 'text-slate-700'}`}>
+                  {item.question}
                 </span>
+                {openIndex === index ? (
+                  <ChevronUp className="w-5 h-5 text-primary" />
+                ) : (
+                  <ChevronDown className="w-5 h-5 text-slate-400" />
+                )}
               </button>
               
-              <div className={`overflow-hidden transition-all duration-300 ease-in-out ${openIndex === index ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'}`}>
-                 <p className="text-slate-600 leading-relaxed text-sm italic pr-8">
-                  {faq.answer}
+              <div 
+                className={`px-6 transition-all duration-300 ease-in-out ${
+                  openIndex === index ? 'max-h-40 pb-6 opacity-100' : 'max-h-0 opacity-0'
+                }`}
+              >
+                <p className="text-slate-600 leading-relaxed">
+                  {item.answer}
                 </p>
               </div>
             </div>

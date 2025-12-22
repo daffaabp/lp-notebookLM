@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { GRADIENT_CLASS } from '../constants';
+import { ShieldCheck } from 'lucide-react';
 
 const RegistrationForm: React.FC = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -33,130 +34,126 @@ const RegistrationForm: React.FC = () => {
   }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert(`Terima kasih, ${formData.name}! Pendaftaran berhasil. Detail akan dikirim ke ${formData.whatsapp}.`);
+    setIsSubmitting(true);
+    // Simulate API call
+    setTimeout(() => {
+      alert(`Terima kasih, ${formData.name}! Anda akan dialihkan ke halaman pembayaran.`);
+      setIsSubmitting(false);
+    }, 1500);
   };
 
   return (
-    <section id="register" className={`py-24 px-4 ${GRADIENT_CLASS} relative`}>
-      <div className="max-w-xl mx-auto bg-white rounded-3xl p-10 shadow-2xl relative overflow-hidden" id="registration-form">
-        <div className="absolute top-0 right-0 bg-orange-600 text-white px-8 py-2 rounded-bl-3xl font-black tracking-widest text-xs uppercase shadow-md">
-          HEMAT Rp 370.000 HARI INI
-        </div>
-
-        {/* 3 Arrow Down with Blink Animation */}
-        <div className="flex justify-center items-center gap-2 mb-4 -mt-2">
-          <img 
-            src="/assets/right-arrow.avif"
-            alt="Arrow down"
-            className="w-10 h-7 md:w-14 md:h-9 arrow-blink rotate-90"
-          />
-          <img 
-            src="/assets/right-arrow.avif"
-            alt="Arrow down"
-            className="w-10 h-7 md:w-14 md:h-9 arrow-blink rotate-90"
-          />
-        </div>
-
-        <h2 className="text-3xl font-black text-center mb-4 text-slate-900 tracking-tighter">Formulir Pendaftaran</h2>
-        <p className="text-center text-slate-500 mb-10 font-bold uppercase text-xs tracking-widest italic">
-          Mulailah Era Menulis Cepat Anda Di Sini
-        </p>
-
-        {/* Timer */}
-        <div className="mb-6 bg-red-50 py-2.5 rounded-lg border border-red-200">
-          <div className="text-center text-red-600">
-            <p className="text-xs font-semibold mb-1.5">Diskon Berakhir Dalam:</p>
-            <div className="flex justify-center gap-2">
-              <div className="bg-white border-2 border-red-200 rounded-lg px-3 py-1.5 min-w-[50px]">
-                <div className="text-lg font-bold text-red-600">{String(timeLeft.hours).padStart(2, '0')}</div>
-                <div className="text-xs opacity-70">Jam</div>
-              </div>
-              <div className="text-lg font-bold self-center text-red-600">:</div>
-              <div className="bg-white border-2 border-red-200 rounded-lg px-3 py-1.5 min-w-[50px]">
-                <div className="text-lg font-bold text-red-600">{String(timeLeft.minutes).padStart(2, '0')}</div>
-                <div className="text-xs opacity-70">Menit</div>
-              </div>
-              <div className="text-lg font-bold self-center text-red-600">:</div>
-              <div className="bg-white border-2 border-red-200 rounded-lg px-3 py-1.5 min-w-[50px]">
-                <div className="text-lg font-bold text-red-600">{String(timeLeft.seconds).padStart(2, '0')}</div>
-                <div className="text-xs opacity-70">Detik</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label className="block text-sm font-black text-slate-900 mb-2 uppercase">Nama Lengkap *</label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              className="w-full border-2 border-slate-100 bg-slate-50 p-4 rounded-xl focus:border-orange-500 outline-none transition shadow-sm text-slate-800"
-              placeholder="Masukkan Nama Anda"
-              required
-              autoComplete="off"
+    <section id="daftar" className="py-20 bg-white">
+      <div className="container mx-auto px-4">
+        <div className="bg-white text-dark p-8 md:p-14 rounded-3xl max-w-2xl mx-auto shadow-2xl relative overflow-hidden border-2 border-slate-200">
+          {/* Arrow Down with Blink Animation */}
+          <div className="flex justify-center items-center gap-2 mb-4 -mt-2">
+            <img 
+              src="/assets/right-arrow.avif"
+              alt="Arrow down"
+              className="w-10 h-7 md:w-14 md:h-9 arrow-blink rotate-90"
             />
-          </div>
-          <div>
-            <label className="block text-sm font-black text-slate-900 mb-2 uppercase">Email Aktif *</label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              className="w-full border-2 border-slate-100 bg-slate-50 p-4 rounded-xl focus:border-orange-500 outline-none transition shadow-sm text-slate-800"
-              placeholder="Masukkan Email Anda"
-              required
-              autoComplete="off"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-black text-slate-900 mb-2 uppercase">Nomor WhatsApp *</label>
-            <input
-              type="tel"
-              name="whatsapp"
-              value={formData.whatsapp}
-              onChange={handleChange}
-              className="w-full border-2 border-slate-100 bg-slate-50 p-4 rounded-xl focus:border-orange-500 outline-none transition shadow-sm text-slate-800"
-              placeholder="08xxxxxxxxx"
-              required
-              autoComplete="off"
+            <img 
+              src="/assets/right-arrow.avif"
+              alt="Arrow down"
+              className="w-10 h-7 md:w-14 md:h-9 arrow-blink rotate-90"
             />
           </div>
 
-          <button
-            type="submit"
-            className="w-full bg-green-600 hover:bg-green-500 text-white font-black py-5 rounded-2xl text-xl shadow-xl transition-all hover:scale-105 active:scale-95 uppercase tracking-widest"
-          >
-            DAFTAR SEKARANG
-          </button>
-
-          {/* Payment Security */}
-          <div className="mt-3 space-y-2">
-            <div className="flex items-center justify-center gap-2 text-sm text-slate-600">
-              <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
-              <span>Pembayaran 100% Aman & Terjamin</span>
-            </div>
-          </div>
-          <p className="text-center text-xs text-slate-400 mt-3 flex items-center justify-center gap-1">
-            <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
-            </svg>
-            Kami menghormati privasi data Anda sesuai standar Google Workspace Enterprise.
+          <h2 className="text-3xl font-bold text-center mb-4 text-dark">Daftar Sekarang</h2>
+          <p className="text-center text-red-600 mb-10 font-bold uppercase text-sm tracking-widest animate-pulse">
+            Slot terbatas & cepat penuh — Daftar SEKARANG sebelum kuota habis!
           </p>
-        </form>
+
+          {/* Timer */}
+          <div className="mb-6 bg-red-50 py-2.5 rounded-lg border-2 border-red-200">
+            <div className="text-center text-red-600">
+              <p className="text-xs font-semibold mb-1.5">Diskon Berakhir Dalam:</p>
+              <div className="flex justify-center gap-2">
+                <div className="bg-white border-2 border-red-200 rounded-lg px-3 py-1.5 min-w-[50px]">
+                  <div className="text-lg font-bold text-red-600">{String(timeLeft.hours).padStart(2, '0')}</div>
+                  <div className="text-xs opacity-70">Jam</div>
+                </div>
+                <div className="text-lg font-bold self-center text-red-600">:</div>
+                <div className="bg-white border-2 border-red-200 rounded-lg px-3 py-1.5 min-w-[50px]">
+                  <div className="text-lg font-bold text-red-600">{String(timeLeft.minutes).padStart(2, '0')}</div>
+                  <div className="text-xs opacity-70">Menit</div>
+                </div>
+                <div className="text-lg font-bold self-center text-red-600">:</div>
+                <div className="bg-white border-2 border-red-200 rounded-lg px-3 py-1.5 min-w-[50px]">
+                  <div className="text-lg font-bold text-red-600">{String(timeLeft.seconds).padStart(2, '0')}</div>
+                  <div className="text-xs opacity-70">Detik</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label className="block text-dark mb-2 font-medium">Nama Lengkap *</label>
+              <input 
+                type="text" 
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                autoComplete="off"
+                placeholder="Masukkan Nama Anda" 
+                required
+                className="w-full p-4 rounded-xl bg-slate-50 border-2 border-slate-200 text-dark placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-secondary transition-all"
+              />
+            </div>
+            
+            <div>
+              <label className="block text-dark mb-2 font-medium">Email Aktif *</label>
+              <input 
+                type="email" 
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                autoComplete="off"
+                placeholder="Masukkan Email Anda" 
+                required
+                className="w-full p-4 rounded-xl bg-slate-50 border-2 border-slate-200 text-dark placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-secondary transition-all"
+              />
+            </div>
+            
+            <div>
+              <label className="block text-dark mb-2 font-medium">Nomor WhatsApp *</label>
+              <input 
+                type="tel" 
+                name="whatsapp"
+                value={formData.whatsapp}
+                onChange={handleChange}
+                autoComplete="off"
+                placeholder="08xxxxxxxxx" 
+                required
+                className="w-full p-4 rounded-xl bg-slate-50 border-2 border-slate-200 text-dark placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-secondary transition-all"
+              />
+            </div>
+
+            <button 
+              type="submit" 
+              disabled={isSubmitting}
+              className="w-full bg-green-600 hover:bg-green-500 text-white font-black py-5 rounded-2xl text-xl shadow-xl transition-all hover:scale-105 active:scale-95 uppercase tracking-widest disabled:opacity-70 disabled:cursor-not-allowed"
+            >
+              {isSubmitting ? 'MEMPROSES...' : 'DAFTAR SEKARANG'}
+            </button>
+          </form>
+
+          <div className="text-center mt-8 flex items-center justify-center gap-3 text-slate-700 bg-green-50 p-4 rounded-xl border border-green-200">
+            <ShieldCheck className="w-10 h-10 text-green-600 flex-shrink-0" />
+            <span className="text-sm md:text-base text-left">
+              <strong className="text-dark">100% Money Back Guarantee.</strong><br/>
+              Tidak puas dengan materinya? Kami kembalikan uang Anda tanpa tanya dalam 7 hari.
+            </span>
+          </div>
+        </div>
       </div>
 
       <style>{`

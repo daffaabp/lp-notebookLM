@@ -1,51 +1,47 @@
 import React from 'react';
-import { GRADIENT_CLASS } from '../constants';
 
 const Footer: React.FC = () => {
-  return (
-    <footer className={`py-16 ${GRADIENT_CLASS} text-white border-t-8 border-orange-600 px-4`}>
-      <div className="max-w-6xl mx-auto text-center">
-        <h3 className="text-2xl font-black mb-8 italic uppercase tracking-tighter text-purple-300">
-          Kelas Inovatif
-        </h3>
-        <p className="text-sm text-purple-100 mb-8 max-w-3xl mx-auto leading-relaxed font-medium">
-          Webinar ini diselenggarakan oleh <span className="font-bold text-white">Kelas Inovatif</span>. Platform pembelajaran Artificial Intelligence Nomor 1 di Indonesia bagi para peneliti akademik. Kami berkomitmen menyediakan edukasi berkualitas tinggi, bebas plagiasi, dan beretika untuk memajukan riset Indonesia.
-          <br />
-          <a href="https://kelasinovatif.com" target="_blank" rel="noopener noreferrer" className="text-orange-400 hover:text-orange-300 underline mt-2 inline-block">
-            kelasinovatif.com
-          </a>
-        </p>
+  const currentYear = new Date().getFullYear();
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
+    e.preventDefault();
+    window.history.pushState({}, '', path);
+    window.dispatchEvent(new PopStateEvent('popstate'));
+  };
 
-        <div className="flex flex-wrap justify-center gap-6 md:gap-10 text-xs font-bold text-purple-200 mb-10 uppercase tracking-widest">
+  return (
+    <footer className="bg-dark text-slate-400 py-16 text-center text-sm">
+      <div className="container mx-auto px-4 max-w-4xl">
+        <div className="mb-6">
           <a 
-            href="/terms-of-service"
-            onClick={(e) => {
-              e.preventDefault();
-              window.history.pushState({}, '', '/terms-of-service');
-              window.dispatchEvent(new PopStateEvent('popstate'));
-            }}
-            className="hover:text-orange-400 border-b-2 border-transparent hover:border-orange-400 pb-1 transition-colors"
+            href="https://kelasinovatif.com" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="inline-block text-white hover:text-secondary transition-colors mb-4"
           >
-            Term of Service
-          </a>
-          <a 
-            href="/privacy-policy"
-            onClick={(e) => {
-              e.preventDefault();
-              window.history.pushState({}, '', '/privacy-policy');
-              window.dispatchEvent(new PopStateEvent('popstate'));
-            }}
-            className="hover:text-orange-400 border-b-2 border-transparent hover:border-orange-400 pb-1 transition-colors"
-          >
-            Privacy Policy
-          </a>
-          <a href="/gdpr" className="hover:text-orange-400 border-b-2 border-transparent hover:border-orange-400 pb-1 transition-colors">
-            GDPR Compliance
+            <i className="fas fa-globe mr-1"></i>kelasinovatif.com
           </a>
         </div>
-        <p className="text-[10px] text-purple-400/60 max-w-2xl mx-auto leading-relaxed uppercase">
-          &copy; {new Date().getFullYear()} Kelas Inovatif. All rights reserved. <br />
-          NotebookLM adalah merek dagang dari Google Labs. Program ini diselenggarakan secara independen.
+        
+        <div className="flex justify-center gap-6 mb-8">
+          <a 
+            href="/terms-of-service" 
+            onClick={(e) => handleLinkClick(e, '/terms-of-service')}
+            className="text-white hover:text-secondary transition-colors cursor-pointer"
+          >
+            Syarat & Ketentuan
+          </a>
+          <span className="text-slate-700">|</span>
+          <a 
+            href="/privacy-policy" 
+            onClick={(e) => handleLinkClick(e, '/privacy-policy')}
+            className="text-white hover:text-secondary transition-colors cursor-pointer"
+          >
+            Kebijakan Privasi
+          </a>
+        </div>
+        
+        <p className="text-xs text-slate-600 mt-4">
+          &copy; {currentYear} Kelas Inovatif. NOTEBOOKLM ADALAH MEREK DAGANG DARI GOOGLE LABS.
         </p>
       </div>
     </footer>

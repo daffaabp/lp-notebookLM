@@ -1,20 +1,17 @@
-export interface FAQItem {
+export interface Testimonial {
+  name: string;
+  role: string;
+  content: string;
+}
+
+export interface FaqItem {
   question: string;
   answer: string;
 }
 
-export interface Testimonial {
-  quote: string;
-  author: string;
-  role: string;
-}
-
-export interface PainPoint {
-  iconClass: string;
-  title: string;
-  description: string;
-}
-
-export interface Benefit {
-  text: string;
+export enum Profession {
+  YOUTUBER_PODCASTER = "YouTuber / Podcaster",
+  WRITER_JOURNALIST = "Penulis Buku / Jurnalis",
+  ACADEMIC_RESEARCHER = "Akademisi / Peneliti",
+  OTHER = "Lainnya"
 }
