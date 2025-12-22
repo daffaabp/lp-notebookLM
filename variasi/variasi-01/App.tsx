@@ -5,8 +5,9 @@ import Solution from './components/Solution';
 import MidCTA from './components/MidCTA';
 import SocialProof from './components/SocialProof';
 import Speaker from './components/Speaker';
-import RegistrationForm from './components/RegistrationForm';
 import Testimonials from './components/Testimonials';
+import BonusFasilitas from './components/BonusFasilitas';
+import RegistrationForm from './components/RegistrationForm';
 import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 
@@ -19,8 +20,9 @@ const App: React.FC = () => {
       <MidCTA />
       <SocialProof />
       <Speaker />
-      <RegistrationForm />
       <Testimonials />
+      <BonusFasilitas />
+      <RegistrationForm />
       <FAQ />
       <Footer />
     </div>

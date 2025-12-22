@@ -3,13 +3,13 @@ import { Award } from 'lucide-react';
 
 const Speaker: React.FC = () => {
   return (
-    <section className="py-20 px-4 bg-gray-50">
+    <section className="pt-4 md:pt-6 pb-20 px-4 bg-gray-50">
       <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-10 border border-gray-100">
         <div className="relative">
              <div className="absolute -inset-2 bg-gradient-to-tr from-blue-400 to-purple-400 rounded-full blur opacity-75"></div>
             <img 
-            src="https://picsum.photos/300/300?people" 
-            alt="Speaker" 
+            src="/speaker/arianto.avif" 
+            alt="M. Arianto - AI Engineer dan Researcher" 
             className="relative rounded-full w-48 h-48 md:w-56 md:h-56 object-cover border-8 border-white shadow-lg"
             />
              <div className="absolute bottom-0 right-0 bg-blue-600 text-white p-2 rounded-full border-4 border-white">

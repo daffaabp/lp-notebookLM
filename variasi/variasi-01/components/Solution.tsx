@@ -26,8 +26,8 @@ const Solution: React.FC = () => {
                   <CheckCircle2 className="w-6 h-6 text-green-500" />
                 </div>
                 <div className="ml-4">
-                  <h5 className="font-bold text-gray-900">Pangkas Waktu Riset</h5>
-                  <p className="text-gray-600 text-base mt-1">Kompres waktu belajar 180 jam menjadi hanya 5 jam saja.</p>
+                  <h5 className="font-bold text-gray-900">Kerja Lebih Cepat</h5>
+                  <p className="text-gray-600 text-base mt-1">Analisis data dan dokumen jadi jauh lebih singkat, hemat waktu hingga puluhan jam.</p>
                 </div>
               </li>
               <li className="flex items-start">
@@ -35,8 +35,8 @@ const Solution: React.FC = () => {
                    <BookOpen className="w-6 h-6 text-green-500" />
                 </div>
                 <div className="ml-4">
-                  <h5 className="font-bold text-gray-900">Verifikasi Instan</h5>
-                  <p className="text-gray-600 text-base mt-1">Dapatkan jawaban lengkap dengan sitasi inline (deep-link) yang merujuk langsung ke paragraf asli dokumen Anda.</p>
+                  <h5 className="font-bold text-gray-900">Jawaban Jelas & Akurat</h5>
+                  <p className="text-gray-600 text-base mt-1">Dapatkan jawaban lengkap dengan sumber jelas, tanpa takut salah kutip.</p>
                 </div>
               </li>
               <li className="flex items-start">
@@ -44,8 +44,8 @@ const Solution: React.FC = () => {
                   <Mic className="w-6 h-6 text-green-500" />
                 </div>
                 <div className="ml-4">
-                  <h5 className="font-bold text-gray-900">Multimodal Mastery</h5>
-                  <p className="text-gray-600 text-base mt-1">Ubah catatan kasar menjadi Peta Pikiran (Mind Map), Flashcards, hingga Podcast interaktif dalam hitungan menit.</p>
+                  <h5 className="font-bold text-gray-900">Hasil Belajar Praktis</h5>
+                  <p className="text-gray-600 text-base mt-1">Rangkuman otomatis bisa jadi mind map, flashcard, atau podcast, siap langsung dipakai.</p>
                 </div>
               </li>
             </ul>

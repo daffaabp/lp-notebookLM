@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { CheckCircle, Loader2 } from 'lucide-react';
+import { CheckCircle, Loader2, Shield, AlertCircle } from 'lucide-react';
+import UrgencyTimer from './UrgencyTimer';
 
 const RegistrationForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -47,10 +48,42 @@ const RegistrationForm: React.FC = () => {
           </div>
         ) : (
           <>
+            {/* 3 Arrow Down with Blink Animation */}
+            <div className="flex justify-center items-center gap-2 mb-4 -mt-4">
+              <img 
+                src="/assets/right-arrow.avif"
+                alt="Arrow down"
+                className="w-10 h-7 md:w-14 md:h-9 arrow-blink rotate-90"
+              />
+              <img 
+                src="/assets/right-arrow.avif"
+                alt="Arrow down"
+                className="w-10 h-7 md:w-14 md:h-9 arrow-blink rotate-90"
+              />
+              <img 
+                src="/assets/right-arrow.avif"
+                alt="Arrow down"
+                className="w-10 h-7 md:w-14 md:h-9 arrow-blink rotate-90"
+              />
+            </div>
+
             <h2 className="text-3xl font-bold text-center mb-4">Daftar Sekarang</h2>
-            <p className="text-center text-gray-600 mb-10">Hanya membutuhkan 30 detik untuk mengubah karir akademik Anda.</p>
+
+            {/* Harga Coret & Countdown Timer */}
+            <div className="mb-6">
+              <div className="text-center mb-3">
+                <span className="text-base font-normal text-gray-500">
+                  <span className="line-through mr-2">Rp 499.000</span>
+                  <span className="text-red-600 font-bold text-xl">Rp 129.000</span>
+                </span>
+              </div>
+              {/* Timer */}
+              <div className="bg-red-50 py-3 rounded-lg border border-red-100">
+                <UrgencyTimer variant="on-white" label="Diskon Berakhir Dalam:" />
+              </div>
+            </div>
             
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-3">
               <div>
                 <label className="block text-sm font-bold mb-2 text-gray-700">Nama Lengkap <span className="text-red-500">*</span></label>
                 <input 
@@ -59,7 +92,7 @@ const RegistrationForm: React.FC = () => {
                   value={formData.name}
                   onChange={handleChange}
                   className="w-full border border-gray-300 p-4 rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all" 
-                  placeholder="Contoh: Dr. Andi Pratama" 
+                  placeholder="Masukkan nama lengkap Anda" 
                   required 
                   autoComplete="off"
                   disabled={submitStatus === 'submitting'}
@@ -73,7 +106,7 @@ const RegistrationForm: React.FC = () => {
                   value={formData.email}
                   onChange={handleChange}
                   className="w-full border border-gray-300 p-4 rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all" 
-                  placeholder="andi@email.com" 
+                  placeholder="Masukkan email Anda" 
                   required 
                   autoComplete="off"
                   disabled={submitStatus === 'submitting'}
@@ -87,7 +120,7 @@ const RegistrationForm: React.FC = () => {
                   value={formData.whatsapp}
                   onChange={handleChange}
                   className="w-full border border-gray-300 p-4 rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all" 
-                  placeholder="0812xxxxxxx" 
+                  placeholder="08xxxxxxxxx" 
                   required 
                   autoComplete="off"
                   disabled={submitStatus === 'submitting'}
@@ -96,7 +129,7 @@ const RegistrationForm: React.FC = () => {
               <button 
                 type="submit" 
                 disabled={submitStatus === 'submitting'}
-                className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 rounded-lg text-xl mt-6 shadow-lg hover:shadow-2xl transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed flex justify-center items-center"
+                className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 rounded-lg text-xl mt-4 shadow-lg hover:shadow-2xl transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed flex justify-center items-center"
               >
                 {submitStatus === 'submitting' ? (
                   <>
@@ -106,7 +139,15 @@ const RegistrationForm: React.FC = () => {
                   "DAFTAR SEKARANG"
                 )}
               </button>
-              <p className="text-center text-xs text-gray-400 mt-6 flex items-center justify-center gap-1">
+
+              {/* Payment Security & Urgency */}
+              <div className="mt-4 space-y-2">
+                <div className="flex items-center justify-center gap-2 text-sm text-gray-600">
+                  <Shield className="w-4 h-4 text-green-600" />
+                  <span>Pembayaran 100% Aman & Terjamin</span>
+                </div>
+              </div>
+              <p className="text-center text-xs text-gray-400 mt-4 flex items-center justify-center gap-1">
                 <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
                 Kami menghormati privasi data Anda sesuai standar Google Workspace Enterprise.
               </p>
@@ -114,6 +155,16 @@ const RegistrationForm: React.FC = () => {
           </>
         )}
       </div>
+
+      <style>{`
+        @keyframes blink {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.2; }
+        }
+        .arrow-blink {
+          animation: blink 1s infinite;
+        }
+      `}</style>
     </section>
   );
 };
