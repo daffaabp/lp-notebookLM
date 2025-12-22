@@ -24,8 +24,7 @@ const Header: React.FC = () => {
           </h1>
           
           <h2 className="text-lg md:text-2xl font-medium text-slate-300 mb-10 max-w-4xl mx-auto leading-relaxed">
-            Sudah Cukup. Jangan biarkan riset strategis Anda berakhir jadi <span className="text-white font-bold underline decoration-red-500 decoration-4">'Sampah Digital'</span>. <br className="hidden md:block"/>
-            Gunakan <strong className="text-blue-400">Google NotebookLM</strong> untuk mengubah tumpukan dokumen pasif menjadi <strong className="text-white">Asisten AI Cerdas</strong> yang menjawab pertanyaan strategis Anda dalam hitungan detik—berbasis 100% data internal, tanpa halusinasi.
+            Analisa manual itu <strong>mahal & lelet</strong>. Biarkan <strong className="text-blue-400">NotebookLM</strong> "menambang" tumpukan laporan bisnis Anda, <span className="text-orange-300 font-semibold">bebas halusinasi</span>, dan temukan "harta karun" data sebelum kompetitor.
           </h2>
           
           <div className="bg-white/10 backdrop-blur-md p-6 rounded-3xl border border-white/20 inline-flex flex-col md:flex-row gap-8 items-center shadow-2xl mb-12 hover:bg-white/15 transition-all">

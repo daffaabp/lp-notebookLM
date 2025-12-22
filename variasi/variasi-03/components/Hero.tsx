@@ -16,10 +16,11 @@ const Hero: React.FC = () => {
           Exclusive Webinar: AI for Medical & Clinical Research
         </div>
         <h1 className="text-3xl md:text-5xl font-black mb-8 leading-tight">
-          Lelah Membedah Ribuan Jurnal Hingga Mata Berair? Riset Manual Membuka Celah <span className="text-red-400 underline decoration-red-400 italic">Human Error & Bias</span> Fatal.
+          "Mata Mau Copot" Baca Ribuan Jurnal Medis? <br className="hidden md:block" />
+          Berhenti Membahayakan Pasien dengan <span className="text-red-400">Riset Kuno!</span>
         </h1>
         <p className="text-lg md:text-xl text-slate-200 mb-10 max-w-3xl mx-auto leading-relaxed">
-          Solusinya: <strong>NotebookLM</strong>. AI "Grounded" yang memproses tumpukan PDF medis dan hasil lab Anda menjadi wawasan klinis instan. Akurat, terkini, dan 100% berbasis sumber yang Anda unggah—tanpa menebak-nebak.
+          Review manual itu <strong>lambat & rawan bias</strong>. Biarkan <strong>NotebookLM</strong> "membedah" ribuan studi klinis, <span className="text-orange-300 font-semibold">bebas halusinasi</span>, dan tegakkan diagnosa akurat sekarang juga.
         </p>
 
         {/* Compact Info Card */}

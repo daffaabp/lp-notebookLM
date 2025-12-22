@@ -5,9 +5,6 @@ export const Hero: React.FC = () => {
   return (
     <section className="legal-gradient text-white pt-12 pb-16 px-4 border-b-4 border-orange-500">
       <div className="max-w-5xl mx-auto text-center">
-        <div className="inline-block bg-orange-500/20 text-orange-400 px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase mb-5 backdrop-blur-sm border border-orange-500/30">
-          WORKSHOP EKSKLUSIF: AI UNTUK LEGAL & COMPLIANCE
-        </div>
         <h1 className="text-3xl md:text-5xl font-black mb-5 leading-tight tracking-tight">
           Masih Sering Merasa <span className="text-orange-500 italic">"Tenggelam"</span> dalam Ribuan Dokumen Kasus & Dihantui Rasa Takut Melewatkan Bukti Kunci?
         </h1>
@@ -28,9 +25,9 @@ export const Hero: React.FC = () => {
                 <Calendar className="text-orange-500" size={20} />
              </div>
              <div className="text-left">
-                <span className="block text-xs text-slate-400 uppercase tracking-wider mb-1">Waktu Pelaksanaan</span>
-                <span className="font-bold text-sm block">Sabtu, 27 Des 2025</span>
-                <span className="text-xs text-slate-300">19.00 WIB</span>
+                <span className="block text-xs text-slate-400 uppercase tracking-wider mb-1">Ikuti Webinar Pada</span>
+                <span className="font-bold text-sm block">Sabtu, 27 Desember 2025</span>
+                <span className="text-xs text-slate-300">19.00 - 21.00 WIB</span>
              </div>
           </div>
         </div>

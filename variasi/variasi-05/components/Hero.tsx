@@ -5,10 +5,6 @@ const Hero: React.FC = () => {
   return (
     <header className={`${GRADIENT_CLASS} text-white pt-16 pb-24 px-4 border-b-8 border-orange-500`}>
       <div className="max-w-6xl mx-auto text-center">
-        <div className="inline-block bg-purple-500/20 text-purple-300 px-6 py-2 rounded-full text-sm font-bold tracking-widest uppercase mb-8 border border-purple-400/30">
-          Webinar Eksklusif: AI untuk Industri Kreatif & Penulis
-        </div>
-
         <h1 className="text-4xl md:text-6xl font-extrabold mb-8 leading-tight">
           Pusing <span className="text-orange-500 italic">Alur Cerita Berantakan</span> & Lelah Riset Berjam-jam? <br />
           Ubah 15 Jam Riset Jadi 30 Menit dengan <span className="underline decoration-orange-500/50">NotebookLM</span>

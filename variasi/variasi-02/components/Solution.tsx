@@ -1,47 +1,70 @@
 import React from 'react';
-import { Link, History, ShieldCheck } from 'lucide-react';
+import { Sparkles, FileCheck, Search, Headphones } from 'lucide-react';
 
 export const Solution: React.FC = () => {
+  const benefits = [
+    "Pangkas waktu riset hingga 90% lebih cepat.",
+    "Cek Fakta & Sitasi otomatis dengan referensi dokumen.",
+    "Otomasi analisis kontrak dari ribuan halaman PDF.",
+    "Visualisasi hubungan kasus dengan peta konsep interaktif."
+  ];
+
   return (
-    <section className="py-20 px-4 bg-slate-100">
-      <div className="max-w-6xl mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-black mb-6 uppercase italic text-slate-900">
-          Solusi: NotebookLM — Integrity Guardian Anda
-        </h2>
-        <p className="text-lg text-slate-700 mb-16 max-w-3xl mx-auto">
-          Bukan chatbot biasa, melainkan asisten yang <strong>Grounded</strong>: Hanya menjawab berdasarkan sumber terpercaya yang ANDA berikan.
-        </p>
-        
-        <div className="grid md:grid-cols-3 gap-8 text-left">
-          <div className="bg-white p-8 rounded-2xl shadow-sm border-b-4 border-blue-600 hover:shadow-md transition-shadow">
-            <div className="bg-blue-50 w-16 h-16 rounded-full flex items-center justify-center mb-6">
-              <Link className="text-blue-600" size={32} />
-            </div>
-            <h5 className="font-bold text-xl mb-3 text-slate-900">Sitasi Inline Verbatim</h5>
-            <p className="text-slate-600 leading-relaxed">
-              Setiap jawaban AI menyertakan nomor referensi yang bisa diklik untuk melihat bukti asli di halaman dokumen.
-            </p>
+    <section className="py-20 px-4 bg-slate-100 border-y border-slate-200">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center justify-center mb-6">
+            <h2 className="text-2xl font-black text-slate-900 uppercase">
+              Solusinya: NotebookLM "Asisten Legal" Cerdas Anda
+            </h2>
           </div>
-          <div className="bg-white p-8 rounded-2xl shadow-sm border-b-4 border-blue-600 hover:shadow-md transition-shadow">
-            <div className="bg-blue-50 w-16 h-16 rounded-full flex items-center justify-center mb-6">
-              <History className="text-blue-600" size={32} />
-            </div>
-            <h5 className="font-bold text-xl mb-3 text-slate-900">Kronologi Otomatis</h5>
-            <p className="text-slate-600 leading-relaxed">
-              Ubah ribuan pesan WhatsApp dan email menjadi timeline kejadian yang rapi untuk bukti persidangan dalam hitungan menit.
-            </p>
+          <p className="text-lg text-slate-700 max-w-3xl mx-auto leading-relaxed">
+            Sistem kecerdasan buatan berbasis <strong>Gemini 3</strong> yang bekerja khusus hanya menggunakan dokumen rahasia klien tanpa risiko kebocoran data.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-12">
+          <div className="bg-white p-10 rounded-2xl shadow-xl border-l-8 border-blue-600">
+            <h5 className="font-black text-2xl mb-6 text-slate-900 flex items-center gap-3">
+              <FileCheck className="text-blue-600" size={28} />
+              Hasil Nyata yang Akan Anda Kuasai:
+            </h5>
+            <ul className="space-y-4 font-semibold text-slate-800">
+              {benefits.map((benefit, index) => (
+                <li key={index} className="flex items-start">
+                  <span className="text-green-500 mr-3 text-xl">✔</span>
+                  <span className="leading-relaxed">{benefit}</span>
+                </li>
+              ))}
+            </ul>
           </div>
-          <div className="bg-white p-8 rounded-2xl shadow-sm border-b-4 border-blue-600 hover:shadow-md transition-shadow">
-             <div className="bg-blue-50 w-16 h-16 rounded-full flex items-center justify-center mb-6">
-              <ShieldCheck className="text-blue-600" size={32} />
+          <div className="space-y-6">
+            <div className="bg-white p-6 rounded-2xl shadow-md flex items-start gap-6 hover:shadow-lg transition-shadow border border-slate-100">
+              <div className="bg-blue-100 p-4 rounded-xl text-blue-600 shrink-0">
+                <Search size={24} />
+              </div>
+              <div>
+                <h6 className="font-black text-slate-900 mb-2">Pencarian Cerdas Multi-Dokumen</h6>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  Temukan klausa, bukti, atau referensi spesifik dari ribuan dokumen dalam hitungan detik dengan pencarian semantik yang memahami konteks hukum.
+                </p>
+              </div>
             </div>
-            <h5 className="font-bold text-xl mb-3 text-slate-900">Privasi Enterprise</h5>
-            <p className="text-slate-600 leading-relaxed">
-              Pelajari cara mengamankan data klien agar tidak digunakan melatih AI publik melalui akun Workspace yang terproteksi.
-            </p>
+            <div className="bg-white p-6 rounded-2xl shadow-md flex items-start gap-6 hover:shadow-lg transition-shadow border border-slate-100">
+              <div className="bg-blue-100 p-4 rounded-xl text-blue-600 shrink-0">
+                <Headphones size={24} />
+              </div>
+              <div>
+                <h6 className="font-black text-slate-900 mb-2">Audio Briefing Interaktif</h6>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  Dengarkan ringkasan kasus dalam format podcast saat perjalanan ke pengadilan atau saat review dokumen di waktu senggang.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
   );
 };
+
