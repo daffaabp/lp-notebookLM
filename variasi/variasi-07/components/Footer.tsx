@@ -20,8 +20,28 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="flex flex-wrap justify-center gap-6 md:gap-10 text-xs font-bold text-emerald-200 mb-10 uppercase tracking-widest">
-          <a href="#" className="hover:text-yellow-400 border-b-2 border-transparent hover:border-yellow-400 pb-1 transition">Ketentuan Layanan</a>
-          <a href="#" className="hover:text-yellow-400 border-b-2 border-transparent hover:border-yellow-400 pb-1 transition">Kebijakan Privasi</a>
+          <a 
+            href="/terms-of-service"
+            onClick={(e) => {
+              e.preventDefault();
+              window.history.pushState({}, '', '/terms-of-service');
+              window.dispatchEvent(new PopStateEvent('popstate'));
+            }}
+            className="hover:text-yellow-400 border-b-2 border-transparent hover:border-yellow-400 pb-1 transition"
+          >
+            Ketentuan Layanan
+          </a>
+          <a 
+            href="/privacy-policy"
+            onClick={(e) => {
+              e.preventDefault();
+              window.history.pushState({}, '', '/privacy-policy');
+              window.dispatchEvent(new PopStateEvent('popstate'));
+            }}
+            className="hover:text-yellow-400 border-b-2 border-transparent hover:border-yellow-400 pb-1 transition"
+          >
+            Kebijakan Privasi
+          </a>
         </div>
         <p className="text-[10px] text-emerald-300/60 max-w-2xl mx-auto leading-relaxed uppercase">
           &copy; 2025 Webinar Masterclass Intelijen Dokumen Digital. <br />

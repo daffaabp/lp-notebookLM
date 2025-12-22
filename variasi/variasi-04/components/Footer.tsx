@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 
-interface FooterProps {
-  onNavigate: (page: 'home' | 'privacy' | 'terms') => void;
-}
-
-const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
+const Footer: React.FC = () => {
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
+    e.preventDefault();
+    window.history.pushState({}, '', path);
+    window.dispatchEvent(new PopStateEvent('popstate'));
+  };
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const toggleFaq = (index: number) => {
@@ -68,8 +69,20 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </a>
 
               <div className="flex flex-wrap justify-center gap-6 md:gap-10 text-xs font-bold text-slate-400 mb-10 uppercase tracking-widest">
-                  <button onClick={() => onNavigate('terms')} className="hover:text-orange-500 border-b-2 border-transparent hover:border-orange-500 pb-1 transition-all">Terms of Service</button>
-                  <button onClick={() => onNavigate('privacy')} className="hover:text-orange-500 border-b-2 border-transparent hover:border-orange-500 pb-1 transition-all">Privacy Policy</button>
+                  <a 
+                    href="/terms-of-service"
+                    onClick={(e) => handleLinkClick(e, '/terms-of-service')}
+                    className="hover:text-orange-500 border-b-2 border-transparent hover:border-orange-500 pb-1 transition-all"
+                  >
+                    Terms of Service
+                  </a>
+                  <a 
+                    href="/privacy-policy"
+                    onClick={(e) => handleLinkClick(e, '/privacy-policy')}
+                    className="hover:text-orange-500 border-b-2 border-transparent hover:border-orange-500 pb-1 transition-all"
+                  >
+                    Privacy Policy
+                  </a>
                   <span className="cursor-default opacity-50">GDPR Compliance</span>
               </div>
               <p className="text-[10px] text-slate-600 max-w-2xl mx-auto leading-relaxed uppercase font-medium">

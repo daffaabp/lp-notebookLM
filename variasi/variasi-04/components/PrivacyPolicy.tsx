@@ -1,15 +1,15 @@
 import React from 'react';
 
-interface PrivacyPolicyProps {
-  onBack: () => void;
-}
+export const PrivacyPolicy: React.FC = () => {
+  const handleBack = () => {
+    window.history.back();
+  };
 
-const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onBack }) => {
   return (
     <div className="min-h-screen bg-slate-50 py-16 px-4">
       <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl p-8 md:p-12">
         <button 
-            onClick={onBack}
+            onClick={handleBack}
             className="mb-8 flex items-center gap-2 text-orange-600 font-bold hover:text-orange-700 transition-colors"
         >
             <i className="fas fa-arrow-left"></i> Kembali ke Webinar
@@ -62,5 +62,3 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onBack }) => {
     </div>
   );
 };
-
-export default PrivacyPolicy;

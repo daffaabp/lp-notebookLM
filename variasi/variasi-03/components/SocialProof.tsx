@@ -1,21 +1,25 @@
 import React from 'react';
 
+const LogoPlaceholder: React.FC<{ label: string }> = ({ label }) => (
+  <div className="h-10 px-4 bg-gray-300 rounded flex items-center justify-center text-gray-600 font-bold text-xs uppercase tracking-wider opacity-60 hover:opacity-100 transition-opacity cursor-default">
+    {label}
+  </div>
+);
+
 const SocialProof: React.FC = () => {
   return (
-    <section className="py-16 bg-white border-b border-slate-200">
-      <div className="max-w-5xl mx-auto text-center px-4">
-        <p className="text-slate-400 uppercase tracking-widest text-sm font-bold mb-8 italic">
-          Teknologi ini telah divalidasi oleh institusi global
-        </p>
-        <div className="flex flex-wrap justify-center gap-12 grayscale opacity-70">
-          <span className="text-2xl font-black italic text-slate-600">Stanford HAI</span>
-          <span className="text-2xl font-black italic text-slate-600">Nature Biotechnology</span>
-          <span className="text-2xl font-black italic text-slate-600">UGM Yogyakarta</span>
-          <span className="text-2xl font-black italic text-slate-600">Children's Mercy</span>
+    <section className="py-6 md:py-8 bg-[#e6e6e6]">
+      <div className="max-w-4xl mx-auto text-center px-4">
+        <h3 className="text-xl font-bold text-gray-700 mb-6">
+          Dipercaya oleh Ribuan Akademisi dari berbagai institusi di Indonesia
+        </h3>
+
+        <div className="flex flex-wrap justify-center gap-4">
+          <LogoPlaceholder label={<span className="text-black">Universitas Negeri</span>} />
+          <LogoPlaceholder label={<span className="text-black">Universitas Swasta</span>} />
+          <LogoPlaceholder label={<span className="text-black">Politeknik</span>} />
+          <LogoPlaceholder label={<span className="text-black">Instansi Pemerintah</span>} />
         </div>
-        <p className="mt-10 text-teal-700 font-semibold px-4 text-sm max-w-3xl mx-auto">
-          Berdasarkan riset terbaru, dokter yang berkolaborasi dengan AI menunjukkan peningkatan akurasi keputusan klinis yang signifikan.
-        </p>
       </div>
     </section>
   );

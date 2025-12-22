@@ -7,7 +7,7 @@ const Speaker: React.FC = () => {
         <div className="relative shrink-0">
           <div className="absolute -inset-4 bg-purple-500 rounded-full blur-xl opacity-30"></div>
           <img
-            src="https://picsum.photos/300/300"
+            src="/speaker/arianto.avif"
             alt="M. Arianto"
             className="relative rounded-3xl w-64 h-64 object-cover shadow-2xl border-4 border-white"
           />

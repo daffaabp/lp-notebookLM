@@ -17,10 +17,26 @@ const Footer: React.FC = () => {
         </p>
 
         <div className="flex flex-wrap justify-center gap-6 md:gap-10 text-xs font-bold text-purple-200 mb-10 uppercase tracking-widest">
-          <a href="/terms-of-service" className="hover:text-orange-400 border-b-2 border-transparent hover:border-orange-400 pb-1 transition-colors">
+          <a 
+            href="/terms-of-service"
+            onClick={(e) => {
+              e.preventDefault();
+              window.history.pushState({}, '', '/terms-of-service');
+              window.dispatchEvent(new PopStateEvent('popstate'));
+            }}
+            className="hover:text-orange-400 border-b-2 border-transparent hover:border-orange-400 pb-1 transition-colors"
+          >
             Term of Service
           </a>
-          <a href="/privacy-policy" className="hover:text-orange-400 border-b-2 border-transparent hover:border-orange-400 pb-1 transition-colors">
+          <a 
+            href="/privacy-policy"
+            onClick={(e) => {
+              e.preventDefault();
+              window.history.pushState({}, '', '/privacy-policy');
+              window.dispatchEvent(new PopStateEvent('popstate'));
+            }}
+            className="hover:text-orange-400 border-b-2 border-transparent hover:border-orange-400 pb-1 transition-colors"
+          >
             Privacy Policy
           </a>
           <a href="/gdpr" className="hover:text-orange-400 border-b-2 border-transparent hover:border-orange-400 pb-1 transition-colors">
