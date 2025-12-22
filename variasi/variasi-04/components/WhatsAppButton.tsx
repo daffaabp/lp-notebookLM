@@ -1,7 +1,7 @@
 import React from 'react';
 
 const WhatsAppButton: React.FC = () => {
-  const whatsappUrl = 'https://api.whatsapp.com/send/?phone=6285712208535&text=Halo%2C%20saya%20ingin%20bertanya%20tentang%20informasi%20webinar%20ini.&type=phone_number&app_absent=0';
+  const whatsappUrl = 'https://api.whatsapp.com/send/?phone=6285712208535&text=Halo%20admin%2C%20saya%20tertarik%20webinar%20NotebookLM%20ini.%20Saya%20dosen%2Fmahasiswa%2Fpeneliti.%20Boleh%20info%3A%20materi%20apa%20saja%2C%20apakah%20cocok%20untuk%20saya%2C%20dan%20cara%20daftarnya%3F&type=phone_number&app_absent=0';
 
   return (
     <div className="fixed bottom-4 right-4 z-50 flex flex-col items-end gap-1">
