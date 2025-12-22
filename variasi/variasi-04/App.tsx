@@ -1,52 +1,57 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import PainPoints from './components/PainPoints';
 import Solution from './components/Solution';
 import Results from './components/Results';
 import SocialProof from './components/SocialProof';
+import { BonusFasilitas } from './components/BonusFasilitas';
 import Registration from './components/Registration';
 import Footer from './components/Footer';
-import PrivacyPolicy from './components/PrivacyPolicy';
-import TermsOfService from './components/TermsOfService';
-
-type Page = 'home' | 'privacy' | 'terms';
+import WhatsAppButton from './components/WhatsAppButton';
+import { PrivacyPolicy } from './components/PrivacyPolicy';
+import { TermsOfService } from './components/TermsOfService';
 
 const App: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState<Page>('home');
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
 
-  const handleNavigate = (page: Page) => {
-    setCurrentPage(page);
-    window.scrollTo(0, 0);
-  };
+  useEffect(() => {
+    const handlePopState = () => {
+      setCurrentPath(window.location.pathname);
+    };
 
-  const renderContent = () => {
-    switch (currentPage) {
-      case 'privacy':
-        return <PrivacyPolicy onBack={() => handleNavigate('home')} />;
-      case 'terms':
-        return <TermsOfService onBack={() => handleNavigate('home')} />;
-      case 'home':
-      default:
-        return (
-          <>
-            <Header />
-            <main className="flex-grow">
-              <PainPoints />
-              <Solution />
-              <Results />
-              <SocialProof />
-              <Registration />
-            </main>
-          </>
-        );
-    }
-  };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  if (currentPath === '/privacy-policy') {
+    return (
+      <div className="bg-slate-50 font-sans text-slate-900 min-h-screen">
+        <PrivacyPolicy />
+      </div>
+    );
+  }
+
+  if (currentPath === '/terms-of-service') {
+    return (
+      <div className="bg-slate-50 font-sans text-slate-900 min-h-screen">
+        <TermsOfService />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex flex-col">
-      {renderContent()}
-      {/* Footer is always shown, but navigation behavior handles the view switching */}
-      {currentPage === 'home' && <Footer onNavigate={handleNavigate} />}
+      <Header />
+      <main className="flex-grow">
+        <PainPoints />
+        <Solution />
+        <Results />
+        <SocialProof />
+        <BonusFasilitas />
+        <Registration />
+      </main>
+      <Footer />
+      <WhatsAppButton />
     </div>
   );
 };

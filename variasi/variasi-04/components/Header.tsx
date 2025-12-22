@@ -14,10 +14,6 @@ const Header: React.FC = () => {
         <div className="absolute top-0 right-0 w-1/2 h-full bg-blue-500/5 blur-[120px] rounded-full pointer-events-none"></div>
 
         <div className="max-w-6xl mx-auto text-center relative z-10">
-          <div className="inline-block bg-blue-500/20 text-blue-400 px-6 py-2 rounded-full text-xs font-bold tracking-widest uppercase mb-8 border border-blue-400/30">
-            Exclusive Corporate Webinar 2025
-          </div>
-          
           {/* HOOK UTAMA */}
           <h1 className="text-3xl md:text-5xl font-black mb-8 leading-tight">
             "Jujur Saja: Berapa Banyak Insight Mahal yang Akhirnya <span className="text-orange-500 italic">'Menguap'</span> Karena Terkubur di Ribuan PDF, Slide Presentasi & Chat Group?"

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const FAQ: React.FC = () => {
   const faqs = [
@@ -16,6 +16,16 @@ const FAQ: React.FC = () => {
     }
   ];
 
+  const [openIndexes, setOpenIndexes] = useState<number[]>([]);
+
+  const toggleFAQ = (idx: number) => {
+    setOpenIndexes((prev) =>
+      prev.includes(idx)
+        ? prev.filter(i => i !== idx)
+        : [...prev, idx]
+    );
+  };
+
   return (
     <section className="py-24 px-4 bg-white">
       <div className="max-w-4xl mx-auto">
@@ -23,18 +33,63 @@ const FAQ: React.FC = () => {
           Pertanyaan Umum (FAQ)
         </h2>
         <div className="space-y-6">
-          {faqs.map((item, idx) => (
-            <div key={idx} className="border-b-2 border-slate-50 pb-6 group">
-              <h4 className="font-black text-xl mb-3 text-teal-900 group-hover:text-orange-500 transition cursor-pointer">
-                {item.q}
-              </h4>
-              <p className="text-slate-600 leading-relaxed">
-                {item.a}
-              </p>
-            </div>
-          ))}
+          {faqs.map((item, idx) => {
+            const isOpen = openIndexes.includes(idx);
+            return (
+              <div key={idx} className="border-b-2 border-slate-50 pb-6 group">
+                <button
+                  className="flex items-center w-full text-left focus:outline-none"
+                  onClick={() => toggleFAQ(idx)}
+                  aria-expanded={isOpen}
+                  aria-controls={`faq-answer-${idx}`}
+                >
+                  <h4 className="font-black text-xl mb-3 text-teal-900 group-hover:text-orange-500 transition cursor-pointer flex-1">
+                    {item.q}
+                  </h4>
+                  <span
+                    className={`ml-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+                    aria-hidden
+                  >
+                    {/* SVG chevron-down icon */}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width={28}
+                      height={28}
+                      viewBox="0 0 20 20"
+                      fill="none"
+                    >
+                      <path
+                        d="M6 8l4 4 4-4"
+                        stroke="#14b8a6"
+                        strokeWidth={2.2}
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </button>
+                {isOpen && (
+                  <p
+                    id={`faq-answer-${idx}`}
+                    className="text-slate-600 leading-relaxed animate-fadeIn"
+                  >
+                    {item.a}
+                  </p>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
+      <style jsx>{`
+        .animate-fadeIn {
+          animation: fadeIn 0.2s;
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(-6px);}
+          to { opacity: 1; transform: translateY(0);}
+        }
+      `}</style>
     </section>
   );
 };

@@ -12,10 +12,7 @@ const Hero: React.FC = () => {
   return (
     <header className="bg-gradient-to-br from-teal-700 to-teal-900 text-white pt-12 pb-16 px-4 border-b-8 border-teal-500">
       <div className="max-w-5xl mx-auto text-center">
-        <div className="inline-block bg-teal-400/20 text-teal-300 px-5 py-2 rounded-full text-xs font-bold tracking-widest uppercase mb-6 border border-teal-400/30">
-          Exclusive Webinar: AI for Medical & Clinical Research
-        </div>
-        <h1 className="text-3xl md:text-5xl font-black mb-8 leading-tight">
+        <h1 className="text-4xl md:text-6xl font-black mb-8 leading-tight">
           "Mata Mau Copot" Baca Ribuan Jurnal Medis? <br className="hidden md:block" />
           Berhenti Membahayakan Pasien dengan <span className="text-red-400">Riset Kuno!</span>
         </h1>
@@ -28,8 +25,8 @@ const Hero: React.FC = () => {
           <div className="text-center sm:text-right min-w-[140px]">
             <p className="text-teal-200 text-[10px] font-bold uppercase tracking-widest mb-1">Investasi Ilmu</p>
             <div className="flex items-center justify-center sm:justify-end gap-2">
-               <span className="text-2xl font-black text-white">Rp 129.000</span>
-               <span className="text-xs line-through text-white/50">Rp 499.000</span>
+               <span className="text-4xl md:text-5xl font-black text-yellow-300 drop-shadow-sm">Rp 129.000</span>
+               <span className="text-2xl md:text-3xl line-through text-red-300 font-semibold ml-3">Rp 499.000</span>
             </div>
           </div>
           
@@ -39,7 +36,7 @@ const Hero: React.FC = () => {
             <p className="text-teal-200 text-[10px] font-bold uppercase tracking-widest mb-1">Waktu Pelaksanaan</p>
             <div className="text-white font-bold flex items-center justify-center sm:justify-start gap-2 text-sm sm:text-base">
               <i className="far fa-calendar-check text-teal-300"></i>
-              <span>Sabtu, 27 Des 2025 | 19.00 WIB</span>
+              <span className="text-base">Sabtu, 27 Des 2025 | 19.00 WIB</span>
             </div>
           </div>
         </div>

@@ -1,8 +1,43 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { RegistrationForm } from './components/RegistrationForm';
+import { BonusFasilitas } from './components/BonusFasilitas';
 import { ChatWidget } from './components/ChatWidget';
+import { PrivacyPolicy } from './components/PrivacyPolicy';
+import { TermsOfService } from './components/TermsOfService';
 
 function App() {
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+
+  useEffect(() => {
+    const handlePopState = () => {
+      setCurrentPath(window.location.pathname);
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
+    e.preventDefault();
+    window.history.pushState({}, '', path);
+    window.dispatchEvent(new PopStateEvent('popstate'));
+  };
+
+  if (currentPath === '/privacy-policy') {
+    return (
+      <div className="bg-slate-50 font-sans text-slate-900 min-h-screen">
+        <PrivacyPolicy />
+      </div>
+    );
+  }
+
+  if (currentPath === '/terms-of-service') {
+    return (
+      <div className="bg-slate-50 font-sans text-slate-900 min-h-screen">
+        <TermsOfService />
+      </div>
+    );
+  }
   return (
     <div className="bg-slate-50 font-sans text-slate-900 overflow-x-hidden relative">
       <ChatWidget />
@@ -247,6 +282,8 @@ function App() {
         </div>
       </section>
 
+      <BonusFasilitas />
+
       <RegistrationForm />
 
       {/* FAQ SECTION */}
@@ -306,13 +343,15 @@ function App() {
 
           <div className="flex flex-wrap justify-center gap-10 text-xs font-bold text-slate-400 mb-10 uppercase tracking-widest">
             <a
-              href="/term-of-service"
+              href="/terms-of-service"
+              onClick={(e) => handleLinkClick(e, '/terms-of-service')}
               className="hover:text-pink-400 border-b-2 border-transparent hover:border-pink-400 pb-1 transition"
             >
-              Term of Service
+              Terms of Service
             </a>
             <a
               href="/privacy-policy"
+              onClick={(e) => handleLinkClick(e, '/privacy-policy')}
               className="hover:text-pink-400 border-b-2 border-transparent hover:border-pink-400 pb-1 transition"
             >
               Privacy Policy

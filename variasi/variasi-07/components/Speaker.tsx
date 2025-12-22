@@ -7,7 +7,7 @@ export const Speaker: React.FC = () => {
         <div className="relative flex-shrink-0">
           <div className="absolute -inset-4 bg-emerald-500 rounded-full blur-xl opacity-30 animate-pulse"></div>
           <img 
-            src="https://picsum.photos/400/400?grayscale" 
+            src="/speaker/arianto.avif" 
             alt="M. Arianto" 
             className="relative rounded-full w-64 h-64 border-8 border-white shadow-2xl object-cover"
           />
