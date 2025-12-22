@@ -1,0 +1,27 @@
+{
+    "name": "landing-page-hub",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+        "dev": "concurrently -c \"auto\" --kill-others-on-fail -n \"MAIN,VAR1,VAR2,VAR3,VAR4,VAR5,VAR6,VAR7\" \"bun run dev:main\" \"bun run dev:01\" \"bun run dev:02\" \"bun run dev:03\" \"bun run dev:04\" \"bun run dev:05\" \"bun run dev:06\" \"bun run dev:07\"",
+        "dev:main": "vite --port 3000",
+        "dev:01": "cd variasi-01 && bun run dev --port 3001",
+        "dev:02": "cd variasi-02 && bun run dev --port 3002",
+        "dev:03": "cd variasi-03 && bun run dev --port 3003",
+        "dev:04": "cd variasi-04 && bun run dev --port 3004",
+        "dev:05": "cd variasi-05 && bun run dev --port 3005",
+        "dev:06": "cd variasi-06 && bun run dev --port 3006",
+        "dev:07": "cd variasi-07 && bun run dev --port 3007"
+    },
+    "devDependencies": {
+        "@prisma/config": "^7.2.0",
+        "@types/node": "^25.0.3",
+        "concurrently": "^9.1.0",
+        "dotenv": "^17.2.3",
+        "vite": "^6.0.1"
+    },
+    "dependencies": {
+        "@prisma/client": "^7.2.0",
+        "pg": "^8.16.3"
+    }
+}

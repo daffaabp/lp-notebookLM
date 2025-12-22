@@ -1,0 +1,48 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+}
+
+model User {
+  id            String    @id @default(uuid())
+  name          String
+  email         String    @unique
+  phone         String
+  source        String    // 'lp-1', 'lp-2', 'lp-3', 'lp-4'
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  payments      Payment[]
+  
+  @@index([email])
+  @@index([source])
+  @@index([createdAt])
+}
+
+model Payment {
+  id                String    @id @default(uuid())
+  userId            String
+  orderId           String    @unique
+  grossAmount       Decimal   @db.Decimal(10, 2)
+  status            String    // 'pending', 'settlement', 'cancel', 'expire', 'deny'
+  paymentType       String?   // 'credit_card', 'bank_transfer', 'gopay', etc.
+  transactionId     String?   @unique
+  transactionTime   DateTime?
+  snapToken         String?
+  snapRedirectUrl   String?
+  source            String    // 'lp-1', 'lp-2', 'lp-3', 'lp-4'
+  metadata          Json?     // Additional data
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  
+  user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@index([userId])
+  @@index([orderId])
+  @@index([status])
+  @@index([source])
+  @@index([createdAt])
+}
