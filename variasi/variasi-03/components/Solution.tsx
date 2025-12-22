@@ -43,18 +43,20 @@ const Solution: React.FC = () => {
                 <i className="fas fa-search text-2xl"></i>
               </div>
               <div>
-                <h6 className="font-black text-slate-900 mb-2">Pencarian Cerdas Multi-Jurnal</h6>
-                <p className="text-sm text-slate-600 leading-relaxed">
+                <h6 className="font-black text-xl text-slate-900 mb-2">Pencarian Cerdas Jurnal Medis</h6>
+                <p className="text-lg text-slate-600 leading-relaxed">
                   Temukan temuan, metodologi, atau referensi spesifik dari ribuan jurnal dalam hitungan detik dengan pencarian semantik yang memahami konteks medis.
                 </p>
               </div>
             </div>
             <div className="bg-white p-6 rounded-2xl shadow-md flex items-start gap-6 hover:shadow-lg transition-shadow border border-slate-100">
-              <div className="bg-teal-100 p-4 rounded-xl text-teal-600 shrink-0">
-                <i className="fas fa-headphones text-2xl"></i>
+              <div className="bg-teal-100 p-3 rounded-xl text-teal-600 shrink-0 flex items-center justify-center">
+                <svg width="26" height="26" viewBox="0 0 20 20" fill="none" className="inline-block" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 3C13.866 3 17 6.13401 17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3ZM10 4.5C6.96243 4.5 4.5 6.96243 4.5 10C4.5 13.0376 6.96243 15.5 10 15.5C13.0376 15.5 15.5 13.0376 15.5 10C15.5 6.96243 13.0376 4.5 10 4.5ZM10 7C11.3807 7 12.5 8.11929 12.5 9.5V12C12.5 13.3807 11.3807 14.5 10 14.5C8.61929 14.5 7.5 13.3807 7.5 12V9.5C7.5 8.11929 8.61929 7 10 7ZM10 8.5C9.17157 8.5 8.5 9.17157 8.5 10V12C8.5 12.8284 9.17157 13.5 10 13.5C10.8284 13.5 11.5 12.8284 11.5 12V10C11.5 9.17157 10.8284 8.5 10 8.5Z" fill="currentColor" />
+                </svg>
               </div>
               <div>
-                <h6 className="font-black text-slate-900 mb-2">Audio Briefing Interaktif</h6>
+                <h6 className="font-black text-xl text-slate-900 mb-2">Audio Briefing Interaktif</h6>
                 <p className="text-sm text-slate-600 leading-relaxed">
                   Dengarkan ringkasan penelitian dalam format podcast saat perjalanan atau saat review literatur di waktu senggang.
                 </p>

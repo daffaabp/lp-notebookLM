@@ -75,9 +75,9 @@ const Testimonials: React.FC = () => {
   }, [testimonials.length]);
 
   return (
-    <section className="py-24 px-4 bg-white">
+    <section className="py-8 md:py-24 px-4 bg-white">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-16 text-slate-900">Testimoni Rekan Sejawat</h2>
+        <h2 className="text-3xl font-bold text-center mb-6 md:mb-16 text-slate-900">Testimoni Rekan Sejawat</h2>
         
         {/* Slider Container */}
         <div 
@@ -94,10 +94,10 @@ const Testimonials: React.FC = () => {
             {testimonials.map((testimonial) => (
               <div 
                 key={testimonial.id}
-                className="min-w-full px-4"
+                className="min-w-full px-2 md:px-4"
               >
-                <div className="p-10 bg-slate-50 rounded-3xl border-l-8 border-teal-500 italic shadow-lg hover:shadow-xl transition-shadow">
-                  <p className="text-slate-700 text-lg mb-6">
+                <div className="p-6 md:p-10 bg-slate-50 rounded-3xl border-l-8 border-teal-500 italic shadow-lg hover:shadow-xl transition-shadow">
+                  <p className="text-slate-700 text-lg mb-4 md:mb-6">
                     "{testimonial.text}"
                   </p>
                   <p className="font-black text-teal-900">— {testimonial.author}</p>
@@ -128,7 +128,7 @@ const Testimonials: React.FC = () => {
         </div>
 
         {/* Dots Navigation */}
-        <div className="flex justify-center gap-2 mt-8">
+        <div className="flex justify-center gap-2 mt-4 md:mt-8">
           {testimonials.map((_, index) => (
             <button
               key={index}
@@ -144,7 +144,7 @@ const Testimonials: React.FC = () => {
         </div>
 
         {/* Slide Counter */}
-        <div className="text-center text-sm text-slate-500 mt-4">
+        <div className="text-center text-sm text-slate-500 mt-2 md:mt-4">
           {currentIndex + 1} / {testimonials.length}
         </div>
       </div>

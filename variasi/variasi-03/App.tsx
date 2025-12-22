@@ -5,6 +5,7 @@ import Solution from './components/Solution';
 import { MidCTA } from './components/MidCTA';
 import SocialProof from './components/SocialProof';
 import Speaker from './components/Speaker';
+import NotebookLMResults from './components/NotebookLMResults';
 import Testimonials from './components/Testimonials';
 import Guarantee from './components/Guarantee';
 import { BonusFasilitas } from './components/BonusFasilitas';
@@ -56,6 +57,7 @@ const App: React.FC = () => {
       <PainPoints />
       <Solution />
       <MidCTA onRegisterClick={scrollToRegister} />
+      <NotebookLMResults />
       <SocialProof />
       <Speaker />
       <Testimonials />

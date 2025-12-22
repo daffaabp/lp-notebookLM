@@ -8,13 +8,13 @@ const LogoPlaceholder: React.FC<{ label: string }> = ({ label }) => (
 
 const SocialProof: React.FC = () => {
   return (
-    <section className="py-6 md:py-8 bg-[#e6e6e6]">
+    <section className="py-4 md:py-8 bg-[#e6e6e6]">
       <div className="max-w-4xl mx-auto text-center px-4">
-        <h3 className="text-xl font-bold text-gray-700 mb-6">
+        <h3 className="text-xl font-bold text-gray-700 mb-3 md:mb-6">
           Dipercaya oleh Ribuan Akademisi dari berbagai institusi di Indonesia
         </h3>
 
-        <div className="flex flex-wrap justify-center gap-4">
+        <div className="flex flex-wrap justify-center gap-3 md:gap-4">
           <LogoPlaceholder label={<span className="text-black">Universitas Negeri</span>} />
           <LogoPlaceholder label={<span className="text-black">Universitas Swasta</span>} />
           <LogoPlaceholder label={<span className="text-black">Politeknik</span>} />
