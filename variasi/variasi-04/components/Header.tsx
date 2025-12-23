@@ -18,7 +18,7 @@ const Header: React.FC = () => {
             NotebookLM bantu tim Anda temukan insight penting dari laporan dengan cepat, tanpa repot dan tanpa risiko halusinasi.
           </h2>
           
-          <div className="bg-white/10 backdrop-blur-md p-6 rounded-3xl border border-white/20 inline-flex flex-col md:flex-row gap-8 items-center shadow-2xl mb-12 hover:bg-white/15 transition-all">
+          <div className="bg-white/10 backdrop-blur-md p-6 rounded-3xl border border-white/20 inline-flex flex-col md:flex-row gap-8 items-center shadow-2xl mb-8 hover:bg-white/15 transition-all">
             <div className="text-center md:text-left">
               <p className="text-orange-400 text-sm font-bold uppercase tracking-tighter mb-1">Investasi Ilmu</p>
               <div className="flex items-center gap-3">
@@ -34,6 +34,14 @@ const Header: React.FC = () => {
                 Sabtu, 27 Des 2025 | 19.00 WIB
               </span>
             </div>
+          </div>
+
+          {/* Bonus Badge */}
+          <div className="mb-8 inline-flex items-center gap-2 bg-gradient-to-r from-yellow-500/30 to-orange-500/30 border-2 border-yellow-400/60 text-yellow-100 px-5 py-2.5 rounded-lg backdrop-blur-sm shadow-lg">
+            <svg className="w-5 h-5 text-yellow-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+            </svg>
+            <span className="text-sm md:text-base font-bold">Bonus: Akun Pro NotebookLM 1 Bulan (Senilai Rp 300.000)</span>
           </div>
 
           <div className="space-y-4">

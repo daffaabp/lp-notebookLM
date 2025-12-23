@@ -21,7 +21,7 @@ const Hero: React.FC = () => {
         </p>
 
         {/* Compact Info Card */}
-        <div className="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/20 inline-flex flex-col sm:flex-row gap-5 items-center justify-center shadow-xl mb-10 max-w-3xl mx-auto">
+        <div className="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/20 inline-flex flex-col sm:flex-row gap-5 items-center justify-center shadow-xl mb-6 max-w-3xl mx-auto">
           <div className="text-center sm:text-right min-w-[140px]">
             <p className="text-teal-200 text-[10px] font-bold uppercase tracking-widest mb-1">Investasi Ilmu</p>
             <div className="flex items-center justify-center sm:justify-end gap-2">
@@ -39,6 +39,14 @@ const Hero: React.FC = () => {
               <span className="text-base">Sabtu, 27 Des 2025 | 19.00 WIB</span>
             </div>
           </div>
+        </div>
+
+        {/* Bonus Badge */}
+        <div className="mb-6 inline-flex items-center gap-2 bg-gradient-to-r from-yellow-400/25 to-orange-400/25 border-2 border-yellow-300/50 text-yellow-100 px-4 py-2 rounded-full backdrop-blur-sm shadow-lg">
+          <svg className="w-5 h-5 text-yellow-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+          </svg>
+          <span className="text-sm md:text-base font-bold">Bonus: Akun Pro NotebookLM 1 Bulan (Senilai Rp 300.000)</span>
         </div>
 
         <div>
