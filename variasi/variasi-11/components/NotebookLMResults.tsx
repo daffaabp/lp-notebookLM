@@ -14,16 +14,22 @@ const NotebookLMResults: React.FC = () => {
       icon: 'fas fa-palette'
     },
     {
-      image: '/results/mind-map.avif',
-      title: 'Mind Map Belajar Interaktif',
-      description: 'Buat mind map belajar yang interaktif untuk membantu anak memahami konsep pelajaran dengan lebih mudah. Lihat bagaimana ide-ide saling terhubung dan temukan cara belajar yang lebih efektif dalam hitungan menit.',
-      icon: 'fas fa-project-diagram'
+      image: '/results/kuis.avif',
+      title: 'Kuis Interaktif untuk Belajar',
+      description: 'Buat kuis belajar yang interaktif untuk membantu anak menguji pemahaman mereka. NotebookLM membantu Ibu membuat soal-soal latihan yang sesuai dengan materi pelajaran anak dalam hitungan menit.',
+      icon: 'fas fa-question-circle'
     },
     {
       image: '/results/ppt.avif',
       title: 'Slide Presentasi Belajar Otomatis',
       description: 'Generate slide presentasi belajar profesional langsung dari materi anak Anda. Tidak perlu lagi menghabiskan waktu berjam-jam untuk membuat slide—NotebookLM melakukannya untuk Anda dengan penjelasan yang mudah dipahami.',
       icon: 'fas fa-presentation'
+    },
+    {
+      image: '/results/video.avif',
+      title: 'Video Pembelajaran Otomatis',
+      description: 'Ubah materi belajar menjadi video pembelajaran yang menarik dan mudah dipahami. NotebookLM membantu Ibu membuat konten video edukatif untuk membantu anak belajar dengan cara yang lebih menyenangkan.',
+      icon: 'fas fa-video'
     }
   ];
 
@@ -120,11 +126,6 @@ const NotebookLMResults: React.FC = () => {
                         alt={result.title}
                         className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                      {/* Badge */}
-                      <div className="absolute top-4 right-4 bg-primary text-white px-4 py-2 rounded-full shadow-lg">
-                        <i className={`${result.icon} mr-2`}></i>
-                        <span className="font-bold text-sm">{result.title}</span>
-                      </div>
                     </div>
 
                     {/* Content */}

@@ -128,11 +128,6 @@ const NotebookLMResults: React.FC = () => {
                         alt={result.title}
                         className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                      {/* Badge */}
-                      <div className="absolute top-4 right-4 bg-teal-600 text-white px-4 py-2 rounded-full shadow-lg">
-                        <i className={`${result.icon} mr-2`}></i>
-                        <span className="font-bold text-sm">{result.title}</span>
-                      </div>
                     </div>
 
                     {/* Content */}
