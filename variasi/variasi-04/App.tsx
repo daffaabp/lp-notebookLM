@@ -10,6 +10,8 @@ import WhatsAppButton from './components/WhatsAppButton';
 import { PrivacyPolicy } from './components/PrivacyPolicy';
 import { TermsOfService } from './components/TermsOfService';
 import Testimonials from './components/Testimonials';
+import FacebookPixel from './components/FacebookPixel';
+import ThankYouPage from './components/ThankYouPage';
 
 const App: React.FC = () => {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
@@ -39,8 +41,18 @@ const App: React.FC = () => {
     );
   }
 
+  if (currentPath === '/thank-you' || window.location.search.includes('page=thank-you')) {
+    return (
+      <>
+        <FacebookPixel />
+        <ThankYouPage />
+      </>
+    );
+  }
+
   return (
     <div className="min-h-screen flex flex-col">
+      <FacebookPixel />
       <Header />
       <main className="flex-grow">
         <PainPoints />

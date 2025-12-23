@@ -9,6 +9,8 @@ import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfService from './components/TermsOfService';
+import FacebookPixel from './components/FacebookPixel';
+import ThankYouPage from './components/ThankYouPage';
 
 const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<string>('home');
@@ -17,7 +19,7 @@ const App: React.FC = () => {
     const urlParams = new URLSearchParams(window.location.search);
     const page = urlParams.get('page');
 
-    if (page === 'privacy-policy' || page === 'terms-of-service') {
+    if (page === 'privacy-policy' || page === 'terms-of-service' || page === 'thank-you') {
       setCurrentPage(page);
     } else {
       setCurrentPage('home');
@@ -27,7 +29,7 @@ const App: React.FC = () => {
     const handlePopState = () => {
       const params = new URLSearchParams(window.location.search);
       const pageParam = params.get('page');
-      if (pageParam === 'privacy-policy' || pageParam === 'terms-of-service') {
+      if (pageParam === 'privacy-policy' || pageParam === 'terms-of-service' || pageParam === 'thank-you') {
         setCurrentPage(pageParam);
       } else {
         setCurrentPage('home');
@@ -67,8 +69,18 @@ const App: React.FC = () => {
     return <TermsOfService />;
   }
 
+  if (currentPage === 'thank-you') {
+    return (
+      <>
+        <FacebookPixel />
+        <ThankYouPage />
+      </>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-bg-light text-gray-800">
+      <FacebookPixel />
       <Hero />
       <Problem />
       <Solution />

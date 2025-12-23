@@ -1,13 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import { CheckCircle, Clock, Shield } from 'lucide-react';
+import { CheckCircle, Clock, Shield, Loader2 } from 'lucide-react';
 
 const RegistrationForm: React.FC = () => {
-  const [submitted, setSubmitted] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    source: 'lp-11'
+  });
   const [timeLeft, setTimeLeft] = useState({
     hours: 0,
     minutes: 0,
     seconds: 0,
   });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // Determine the field name based on placeholder or type if name attribute is missing or generic
+    let field = 'name';
+    if (e.target.type === 'email') field = 'email';
+    else if (e.target.type === 'tel' || e.target.placeholder.includes('WhatsApp')) field = 'phone';
+    else field = 'name';
+
+    setFormData(prev => ({ ...prev, [field]: e.target.value }));
+  };
 
   useEffect(() => {
     // Set target date to 2 hours from now
@@ -38,10 +54,101 @@ const RegistrationForm: React.FC = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const loadMidtransScript = (): Promise<void> => {
+    return new Promise((resolve, reject) => {
+      const scriptId = "midtrans-script";
+      if (document.getElementById(scriptId)) {
+        resolve();
+        return;
+      }
+
+      const clientKey = import.meta.env.VITE_MIDTRANS_CLIENT_KEY;
+      if (!clientKey) {
+        console.error("VITE_MIDTRANS_CLIENT_KEY is missing!");
+        reject(new Error("Configuration Error: Midtrans Client Key is missing."));
+        return;
+      }
+
+      const script = document.createElement("script");
+      const isSandbox = import.meta.env.VITE_MIDTRANS_SANDBOX === 'true';
+      script.src = isSandbox
+        ? "https://app.sandbox.midtrans.com/snap/snap.js"
+        : "https://app.midtrans.com/snap/snap.js";
+
+      script.id = scriptId;
+      script.setAttribute("data-client-key", clientKey);
+      script.async = true;
+      script.onload = () => resolve();
+      script.onerror = () => reject(new Error('Failed to load payment script'));
+      document.body.appendChild(script);
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    // In a real app, send data to backend here
+    setSubmitStatus('submitting');
+
+    try {
+      await loadMidtransScript();
+
+      const apiUrl = import.meta.env.VITE_API_URL || 'https://ujdbqubpdeuhbhrcbhan.supabase.co/functions/v1/submit-registration';
+
+      // Track InitiateCheckout
+      // @ts-ignore
+      if (window.fbq) {
+        // @ts-ignore
+        window.fbq('track', 'InitiateCheckout', {
+          value: 129000,
+          currency: 'IDR',
+          content_name: 'Webinar Publikasi',
+          num_ids: 1
+        });
+      }
+
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          source: formData.source,
+          finishUrl: `${window.location.origin}${window.location.pathname}?page=thank-you`
+        })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Gagal mendaftar');
+      }
+
+      // @ts-ignore
+      window.snap.pay(data.snapToken, {
+        onSuccess: function (result: any) {
+          window.location.href = `${window.location.origin}${window.location.pathname}?page=thank-you&order_id=${data.orderId}`;
+        },
+        onPending: function (result: any) {
+          alert("Menunggu pembayaran...");
+          console.log(result);
+        },
+        onError: function (result: any) {
+          alert("Pembayaran gagal!");
+          console.log(result);
+        },
+        onClose: function () {
+          alert('Anda menutup popup sebelum menyelesaikan pembayaran');
+          setSubmitStatus('idle');
+        }
+      });
+
+    } catch (error: any) {
+      alert(error.message);
+      setSubmitStatus('idle');
+    }
   };
 
   const TimeUnit: React.FC<{ value: number; label: string }> = ({ value, label }) => (
@@ -51,32 +158,11 @@ const RegistrationForm: React.FC = () => {
     </div>
   );
 
-  if (submitted) {
-    return (
-      <section id="daftar" className="py-16 container mx-auto px-4">
-        <div className="bg-primary text-white p-12 rounded-3xl text-center shadow-xl max-w-3xl mx-auto animate-fade-in">
-          <CheckCircle className="w-20 h-20 mx-auto mb-6 text-white" />
-          <h2 className="text-3xl font-bold mb-4">Terima Kasih, Ibu!</h2>
-          <p className="text-lg mb-8">
-            Pendaftaran berhasil. Link Zoom dan Bonus Spesial telah dikirim ke email dan WhatsApp Ibu.
-            Sampai jumpa di webinar!
-          </p>
-          <button 
-            onClick={() => setSubmitted(false)}
-            className="text-white underline opacity-80 hover:opacity-100"
-          >
-            Daftar lagi untuk teman?
-          </button>
-        </div>
-      </section>
-    );
-  }
-
   return (
     <section id="daftar" className="py-16 container mx-auto px-4">
       <div className="bg-primary text-white p-8 md:p-16 rounded-3xl text-center shadow-xl max-w-3xl mx-auto">
         <h2 className="text-3xl font-bold mb-2">Daftar Webinar</h2>
-        
+
         {/* Pricing */}
         <div className="mb-6 flex flex-col items-center gap-2">
           <div className="flex items-center gap-3">
@@ -84,12 +170,12 @@ const RegistrationForm: React.FC = () => {
             <span className="text-2xl md:text-3xl font-bold text-gold">Rp 129.000</span>
           </div>
         </div>
-        
+
         {/* Countdown Timer */}
         <div className="mb-10">
           <div className="flex items-center justify-center gap-2 mb-3 text-white font-bold bg-red-600/90 border-2 border-red-500 inline-block px-4 py-1 rounded-full text-sm shadow-lg">
-             <Clock className="w-4 h-4" />
-             <span>PENDAFTARAN DITUTUP DALAM:</span>
+            <Clock className="w-4 h-4" />
+            <span>PENDAFTARAN DITUTUP DALAM:</span>
           </div>
           <div className="flex justify-center gap-3 md:gap-4">
             <TimeUnit value={timeLeft.hours} label="Jam" />
@@ -100,17 +186,17 @@ const RegistrationForm: React.FC = () => {
 
         {/* 3 Arrow Down with Blink Animation */}
         <div className="flex justify-center items-center gap-2 mb-4 -mt-2">
-          <img 
+          <img
             src="/assets/right-arrow.avif"
             alt="Arrow down"
             className="w-10 h-7 md:w-14 md:h-9 arrow-blink rotate-90"
           />
-          <img 
+          <img
             src="/assets/right-arrow.avif"
             alt="Arrow down"
             className="w-10 h-7 md:w-14 md:h-9 arrow-blink rotate-90"
           />
-          <img 
+          <img
             src="/assets/right-arrow.avif"
             alt="Arrow down"
             className="w-10 h-7 md:w-14 md:h-9 arrow-blink rotate-90"
@@ -118,30 +204,46 @@ const RegistrationForm: React.FC = () => {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto mt-8">
-          <input 
-            type="text" 
-            placeholder="Nama Lengkap Ibu" 
-            required 
+          <input
+            type="text"
+            placeholder="Nama Lengkap Ibu"
+            value={formData.name}
+            onChange={handleChange}
+            required
             className="w-full px-6 py-4 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-secondary/50 transition-all"
+            disabled={submitStatus === 'submitting'}
           />
-          <input 
-            type="email" 
-            placeholder="Email Aktif" 
-            required 
+          <input
+            type="email"
+            placeholder="Email Aktif"
+            value={formData.email}
+            onChange={handleChange}
+            required
             className="w-full px-6 py-4 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-secondary/50 transition-all"
+            disabled={submitStatus === 'submitting'}
           />
-          <input 
-            type="tel" 
-            placeholder="Nomor WhatsApp" 
-            required 
+          <input
+            type="tel"
+            placeholder="Nomor WhatsApp"
+            value={formData.phone}
+            onChange={handleChange}
+            required
             className="w-full px-6 py-4 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-secondary/50 transition-all"
+            disabled={submitStatus === 'submitting'}
           />
-          
-          <button 
-            type="submit" 
-            className="w-full bg-gold text-dark py-4 rounded-lg font-bold text-xl shadow-lg hover:bg-yellow-400 hover:scale-105 transition-all duration-300 mt-4"
+
+          <button
+            type="submit"
+            disabled={submitStatus === 'submitting'}
+            className="w-full bg-gold text-dark py-4 rounded-lg font-bold text-xl shadow-lg hover:bg-yellow-400 hover:scale-105 transition-all duration-300 mt-4 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none"
           >
-            DAFTAR SEKARANG
+            {submitStatus === 'submitting' ? (
+              <span className="flex items-center justify-center gap-2">
+                <Loader2 className="animate-spin" /> MEMPROSES...
+              </span>
+            ) : (
+              'DAFTAR SEKARANG'
+            )}
           </button>
 
           {/* Payment Security */}

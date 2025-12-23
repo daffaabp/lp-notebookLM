@@ -13,6 +13,8 @@ import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfService from './components/TermsOfService';
+import FacebookPixel from './components/FacebookPixel';
+import ThankYouPage from './components/ThankYouPage';
 
 const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<string>('home');
@@ -20,8 +22,8 @@ const App: React.FC = () => {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const page = urlParams.get('page');
-    
-    if (page === 'privacy-policy' || page === 'terms-of-service') {
+
+    if (page === 'privacy-policy' || page === 'terms-of-service' || page === 'thank-you') {
       setCurrentPage(page);
     } else {
       setCurrentPage('home');
@@ -31,7 +33,7 @@ const App: React.FC = () => {
     const handlePopState = () => {
       const params = new URLSearchParams(window.location.search);
       const pageParam = params.get('page');
-      if (pageParam === 'privacy-policy' || pageParam === 'terms-of-service') {
+      if (pageParam === 'privacy-policy' || pageParam === 'terms-of-service' || pageParam === 'thank-you') {
         setCurrentPage(pageParam);
       } else {
         setCurrentPage('home');
@@ -71,8 +73,18 @@ const App: React.FC = () => {
     return <TermsOfService />;
   }
 
+  if (currentPage === 'thank-you') {
+    return (
+      <>
+        <FacebookPixel />
+        <ThankYouPage />
+      </>
+    );
+  }
+
   return (
     <div className="min-h-screen flex flex-col">
+      <FacebookPixel />
       <Hero />
       <PainPoints />
       <Solution />

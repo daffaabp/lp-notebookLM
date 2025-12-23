@@ -12,6 +12,8 @@ import { FAQ } from './components/FAQ';
 import { Footer } from './components/Footer';
 import { PrivacyPolicy } from './components/PrivacyPolicy';
 import { TermsOfService } from './components/TermsOfService';
+import FacebookPixel from './components/FacebookPixel';
+import ThankYouPage from './components/ThankYouPage';
 
 const App: React.FC = () => {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
@@ -50,8 +52,18 @@ const App: React.FC = () => {
     );
   }
 
+  if (currentPath === '/thank-you' || window.location.search.includes('page=thank-you')) {
+    return (
+      <>
+        <FacebookPixel />
+        <ThankYouPage />
+      </>
+    );
+  }
+
   return (
     <div className="bg-slate-50 font-sans text-slate-900 min-h-screen selection:bg-orange-200 selection:text-orange-900">
+      <FacebookPixel />
       <Hero />
       <PainPoints />
       <Solution />

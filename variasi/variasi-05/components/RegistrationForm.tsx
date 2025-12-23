@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { ShieldCheck } from 'lucide-react';
+import { ShieldCheck, Loader2 } from 'lucide-react';
 
 const RegistrationForm: React.FC = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    whatsapp: ''
+    phone: '', // Renamed from whatsapp to phone
+    source: 'lp-5'
   });
 
   const [timeLeft, setTimeLeft] = useState({
@@ -38,14 +39,101 @@ const RegistrationForm: React.FC = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const loadMidtransScript = (): Promise<void> => {
+    return new Promise((resolve, reject) => {
+      const scriptId = "midtrans-script";
+      if (document.getElementById(scriptId)) {
+        resolve();
+        return;
+      }
+
+      const clientKey = import.meta.env.VITE_MIDTRANS_CLIENT_KEY;
+      if (!clientKey) {
+        console.error("VITE_MIDTRANS_CLIENT_KEY is missing!");
+        reject(new Error("Configuration Error: Midtrans Client Key is missing."));
+        return;
+      }
+
+      const script = document.createElement("script");
+      const isSandbox = import.meta.env.VITE_MIDTRANS_SANDBOX === 'true';
+      script.src = isSandbox
+        ? "https://app.sandbox.midtrans.com/snap/snap.js"
+        : "https://app.midtrans.com/snap/snap.js";
+
+      script.id = scriptId;
+      script.setAttribute("data-client-key", clientKey);
+      script.async = true;
+      script.onload = () => resolve();
+      script.onerror = () => reject(new Error('Failed to load payment script'));
+      document.body.appendChild(script);
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    // Simulate API call
-    setTimeout(() => {
-      alert(`Terima kasih, ${formData.name}! Anda akan dialihkan ke halaman pembayaran.`);
-      setIsSubmitting(false);
-    }, 1500);
+    setSubmitStatus('submitting');
+
+    try {
+      await loadMidtransScript();
+
+      const apiUrl = import.meta.env.VITE_API_URL || 'https://ujdbqubpdeuhbhrcbhan.supabase.co/functions/v1/submit-registration';
+
+      // Track InitiateCheckout
+      // @ts-ignore
+      if (window.fbq) {
+        // @ts-ignore
+        window.fbq('track', 'InitiateCheckout', {
+          value: 129000,
+          currency: 'IDR',
+          content_name: 'Webinar Publikasi',
+          num_ids: 1
+        });
+      }
+
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          source: formData.source,
+          finishUrl: `${window.location.origin}${window.location.pathname}?page=thank-you`
+        })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Gagal mendaftar');
+      }
+
+      // @ts-ignore
+      window.snap.pay(data.snapToken, {
+        onSuccess: function (result: any) {
+          window.location.href = `${window.location.origin}${window.location.pathname}?page=thank-you&order_id=${data.orderId}`;
+        },
+        onPending: function (result: any) {
+          alert("Menunggu pembayaran...");
+          console.log(result);
+        },
+        onError: function (result: any) {
+          alert("Pembayaran gagal!");
+          console.log(result);
+        },
+        onClose: function () {
+          alert('Anda menutup popup sebelum menyelesaikan pembayaran');
+          setSubmitStatus('idle');
+        }
+      });
+
+    } catch (error: any) {
+      alert(error.message);
+      setSubmitStatus('idle');
+    }
   };
 
   return (
@@ -54,12 +142,12 @@ const RegistrationForm: React.FC = () => {
         <div className="bg-white text-dark p-8 md:p-14 rounded-3xl max-w-2xl mx-auto shadow-2xl relative overflow-hidden border-2 border-slate-200">
           {/* Arrow Down with Blink Animation */}
           <div className="flex justify-center items-center gap-2 mb-4 -mt-2">
-            <img 
+            <img
               src="/assets/right-arrow.avif"
               alt="Arrow down"
               className="w-10 h-7 md:w-14 md:h-9 arrow-blink rotate-90"
             />
-            <img 
+            <img
               src="/assets/right-arrow.avif"
               alt="Arrow down"
               className="w-10 h-7 md:w-14 md:h-9 arrow-blink rotate-90"
@@ -93,63 +181,70 @@ const RegistrationForm: React.FC = () => {
               </div>
             </div>
           </div>
-          
+
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label className="block text-dark mb-2 font-medium">Nama Lengkap *</label>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
                 autoComplete="off"
-                placeholder="Masukkan Nama Anda" 
+                placeholder="Masukkan Nama Anda"
                 required
-                className="w-full p-4 rounded-xl bg-slate-50 border-2 border-slate-200 text-dark placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-secondary transition-all"
-              />
-            </div>
-            
-            <div>
-              <label className="block text-dark mb-2 font-medium">Email Aktif *</label>
-              <input 
-                type="email" 
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                autoComplete="off"
-                placeholder="Masukkan Email Anda" 
-                required
-                className="w-full p-4 rounded-xl bg-slate-50 border-2 border-slate-200 text-dark placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-secondary transition-all"
-              />
-            </div>
-            
-            <div>
-              <label className="block text-dark mb-2 font-medium">Nomor WhatsApp *</label>
-              <input 
-                type="tel" 
-                name="whatsapp"
-                value={formData.whatsapp}
-                onChange={handleChange}
-                autoComplete="off"
-                placeholder="08xxxxxxxxx" 
-                required
+                disabled={submitStatus === 'submitting'}
                 className="w-full p-4 rounded-xl bg-slate-50 border-2 border-slate-200 text-dark placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-secondary transition-all"
               />
             </div>
 
-            <button 
-              type="submit" 
-              disabled={isSubmitting}
-              className="w-full bg-green-600 hover:bg-green-500 text-white font-black py-5 rounded-2xl text-xl shadow-xl transition-all hover:scale-105 active:scale-95 uppercase tracking-widest disabled:opacity-70 disabled:cursor-not-allowed"
+            <div>
+              <label className="block text-dark mb-2 font-medium">Email Aktif *</label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                autoComplete="off"
+                placeholder="Masukkan Email Anda"
+                required
+                disabled={submitStatus === 'submitting'}
+                className="w-full p-4 rounded-xl bg-slate-50 border-2 border-slate-200 text-dark placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-secondary transition-all"
+              />
+            </div>
+
+            <div>
+              <label className="block text-dark mb-2 font-medium">Nomor WhatsApp *</label>
+              <input
+                type="tel"
+                name="phone" // Renamed from whatsapp to phone
+                value={formData.phone}
+                onChange={handleChange}
+                autoComplete="off"
+                placeholder="08xxxxxxxxx"
+                required
+                disabled={submitStatus === 'submitting'}
+                className="w-full p-4 rounded-xl bg-slate-50 border-2 border-slate-200 text-dark placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-secondary transition-all"
+              />
+            </div>
+
+            <button
+              type="submit"
+              disabled={submitStatus === 'submitting'}
+              className="w-full bg-green-600 hover:bg-green-500 text-white font-black py-5 rounded-2xl text-xl shadow-xl transition-all hover:scale-105 active:scale-95 uppercase tracking-widest flex items-center justify-center disabled:opacity-70 disabled:cursor-not-allowed"
             >
-              {isSubmitting ? 'MEMPROSES...' : 'DAFTAR SEKARANG'}
+              {submitStatus === 'submitting' ? (
+                <><Loader2 className="animate-spin mr-2" /> MEMPROSES...</>
+              ) : (
+                'DAFTAR SEKARANG'
+              )}
             </button>
           </form>
 
           <div className="text-center mt-8 flex items-center justify-center gap-3 text-slate-700 bg-green-50 p-4 rounded-xl border border-green-200">
             <ShieldCheck className="w-10 h-10 text-green-600 flex-shrink-0" />
             <span className="text-sm md:text-base text-left">
-              <strong className="text-dark">100% Money Back Guarantee.</strong><br/>
+              <strong className="text-dark">100% Money Back Guarantee.</strong><br />
               Tidak puas dengan materinya? Kami kembalikan uang Anda tanpa tanya dalam 7 hari.
             </span>
           </div>

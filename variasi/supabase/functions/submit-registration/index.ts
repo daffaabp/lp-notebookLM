@@ -1,6 +1,6 @@
-
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+import { v4 as uuidv4 } from 'https://esm.sh/uuid'
 
 const CorsHeaders = {
     'Access-Control-Allow-Origin': '*',
@@ -41,7 +41,12 @@ serve(async (req) => {
             .from('User')
             .select('id')
             .eq('email', email)
-            .single()
+            .maybeSingle()
+
+        if (findError) {
+            console.error("Error finding user:", findError)
+            throw new Error("Database error when checking user")
+        }
 
         if (existingUser) {
             userId = existingUser.id;
@@ -59,9 +64,13 @@ serve(async (req) => {
             if (updateError) console.error("Update User Error", updateError)
         } else {
             // Insert new user
+            const newUserId = uuidv4()
+            console.log("Generated New User ID:", newUserId)
+
             const { data: newUser, error: insertError } = await supabase
                 .from('User')
                 .insert({
+                    id: newUserId,
                     email,
                     name,
                     phone,
@@ -73,7 +82,7 @@ serve(async (req) => {
 
             if (insertError) {
                 console.error("Insert User Error", insertError)
-                throw new Error("Failed to register user: " + JSON.stringify(insertError))
+                throw new Error("Failed to register user: " + insertError.message)
             }
             userId = newUser.id
         }
@@ -95,13 +104,17 @@ serve(async (req) => {
 
         // Determine Redirect URL Logic (Fallback if finishUrl not provided)
         let baseUrl = 'http://localhost:3000';
-        if (source === 'lp-1') baseUrl = 'http://localhost:3001';
-        else if (source === 'lp-2') baseUrl = 'http://localhost:3002';
-        else if (source === 'lp-3') baseUrl = 'http://localhost:3003';
-        else if (source === 'lp-4') baseUrl = 'http://localhost:3004';
-        else if (source === 'lp-5') baseUrl = 'http://localhost:3005';
-        else if (source === 'lp-6') baseUrl = 'http://localhost:3006';
-        else if (source === 'lp-7') baseUrl = 'http://localhost:3007';
+        if (source === 'lp-1' || source === 'variasi-01') baseUrl = 'http://localhost:3001';
+        else if (source === 'lp-2' || source === 'variasi-02') baseUrl = 'http://localhost:3002';
+        else if (source === 'lp-3' || source === 'variasi-03') baseUrl = 'http://localhost:3003';
+        else if (source === 'lp-4' || source === 'variasi-04') baseUrl = 'http://localhost:3004';
+        else if (source === 'lp-5' || source === 'variasi-05') baseUrl = 'http://localhost:3005';
+        else if (source === 'lp-6' || source === 'variasi-06') baseUrl = 'http://localhost:3006';
+        else if (source === 'lp-7' || source === 'variasi-07') baseUrl = 'http://localhost:3007';
+        else if (source === 'lp-8' || source === 'variasi-08') baseUrl = 'http://localhost:3008';
+        else if (source === 'lp-9' || source === 'variasi-09') baseUrl = 'http://localhost:3009';
+        else if (source === 'lp-10' || source === 'variasi-10') baseUrl = 'http://localhost:3010';
+        else if (source === 'lp-11' || source === 'variasi-11') baseUrl = 'http://localhost:3011';
 
         // Override with PROD_URL if configured in Environment Variables
         const prodUrl = Deno.env.get(`PROD_URL_${source.toUpperCase().replace('-', '_')}`);
@@ -165,6 +178,7 @@ serve(async (req) => {
         const { error: paymentError } = await supabase
             .from('Payment')
             .insert({
+                id: uuidv4(),
                 userId: userId,
                 orderId: orderId,
                 grossAmount: grossAmount,

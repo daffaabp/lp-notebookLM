@@ -4,6 +4,8 @@ import { BonusFasilitas } from './components/BonusFasilitas';
 import { ChatWidget } from './components/ChatWidget';
 import { PrivacyPolicy } from './components/PrivacyPolicy';
 import { TermsOfService } from './components/TermsOfService';
+import FacebookPixel from './components/FacebookPixel';
+import ThankYouPage from './components/ThankYouPage';
 
 function App() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
@@ -38,10 +40,20 @@ function App() {
       </div>
     );
   }
+
+  if (currentPath === '/thank-you' || window.location.search.includes('page=thank-you')) {
+    return (
+      <>
+        <FacebookPixel />
+        <ThankYouPage />
+      </>
+    );
+  }
   return (
     <div className="bg-slate-50 font-sans text-slate-900 overflow-x-hidden relative">
+      <FacebookPixel />
       <ChatWidget />
-      
+
       {/* URGENCY BAR */}
       <div className="bg-pink-600 text-white text-center py-2 text-sm font-bold sticky top-0 z-40 px-2 shadow-md">
         🎁 Penawaran Spesial: Harga 129rb Hanya untuk 100 Pendaftar Pertama!
@@ -104,15 +116,15 @@ function App() {
           </h2>
           <div className="grid md:grid-cols-3 gap-12 text-center">
             {[
-                { icon: "fa-book-open", title: "Bingung Kurikulum Anak", text: "Istilah CP, ATP, Modul Ajar terasa seperti bahasa asing? Menjadi 'guru pengganti' di rumah terasa sangat melelahkan kognitif." },
-                { icon: "fa-trash-alt", title: "Banjir Sampah Informasi", text: "Grup WA penuh rumor dan hoaks kesehatan yang bikin cemas? Sulit membedakan mana fakta dan mana karangan." },
-                { icon: "fa-battery-quarter", title: "Beban Mental (Burnout)", text: "Mengurus nutrisi, kesehatan, dan jadwal keluarga sendirian membuat energi Ibu terkuras habis setiap hari." }
+              { icon: "fa-book-open", title: "Bingung Kurikulum Anak", text: "Istilah CP, ATP, Modul Ajar terasa seperti bahasa asing? Menjadi 'guru pengganti' di rumah terasa sangat melelahkan kognitif." },
+              { icon: "fa-trash-alt", title: "Banjir Sampah Informasi", text: "Grup WA penuh rumor dan hoaks kesehatan yang bikin cemas? Sulit membedakan mana fakta dan mana karangan." },
+              { icon: "fa-battery-quarter", title: "Beban Mental (Burnout)", text: "Mengurus nutrisi, kesehatan, dan jadwal keluarga sendirian membuat energi Ibu terkuras habis setiap hari." }
             ].map((item, idx) => (
-                <div key={idx} className="p-8 rounded-3xl bg-pink-50 border-b-4 border-red-400 hover:shadow-lg transition-all duration-300">
-                    <i className={`fas ${item.icon} text-red-500 text-4xl mb-6`}></i>
-                    <h4 className="font-bold text-xl mb-3">{item.title}</h4>
-                    <p className="text-slate-600 text-sm leading-relaxed">{item.text}</p>
-                </div>
+              <div key={idx} className="p-8 rounded-3xl bg-pink-50 border-b-4 border-red-400 hover:shadow-lg transition-all duration-300">
+                <i className={`fas ${item.icon} text-red-500 text-4xl mb-6`}></i>
+                <h4 className="font-bold text-xl mb-3">{item.title}</h4>
+                <p className="text-slate-600 text-sm leading-relaxed">{item.text}</p>
+              </div>
             ))}
           </div>
         </div>
@@ -139,15 +151,15 @@ function App() {
               </h5>
               <ul className="space-y-4 font-bold text-slate-800 text-lg">
                 {[
-                    "Multitasking Tanpa Lelah: Ubah materi belajar anak menjadi Podcast.",
-                    "Benteng Hoaks Grup WA: Verifikasi info kesehatan dengan sitasi sumber asli.",
-                    "Anak Rajin Belajar: Buat kuis dan flashcards otomatis.",
-                    "Pusat Pengetahuan Keluarga: Kelola data medis dan resep masakan."
+                  "Multitasking Tanpa Lelah: Ubah materi belajar anak menjadi Podcast.",
+                  "Benteng Hoaks Grup WA: Verifikasi info kesehatan dengan sitasi sumber asli.",
+                  "Anak Rajin Belajar: Buat kuis dan flashcards otomatis.",
+                  "Pusat Pengetahuan Keluarga: Kelola data medis dan resep masakan."
                 ].map((item, i) => (
-                    <li key={i} className="flex items-start">
-                        <span className="text-green-500 mr-3 mt-1 text-xl">✔</span>
-                        <span>{item}</span>
-                    </li>
+                  <li key={i} className="flex items-start">
+                    <span className="text-green-500 mr-3 mt-1 text-xl">✔</span>
+                    <span>{item}</span>
+                  </li>
                 ))}
               </ul>
             </div>
@@ -334,7 +346,7 @@ function App() {
             Webinar ini diselenggarakan oleh Kelas Inovatif. Platform pembelajaran Artificial Intelligence Nomor 1 di Indonesia bagi para peneliti akademik. Kami berkomitmen menyediakan edukasi berkualitas tinggi, bebas plagiasi, dan beretika untuk memajukan riset Indonesia.
           </p>
           <a href="https://kelasinovatif.com" target="_blank" rel="noopener noreferrer" className="text-xl font-bold text-white hover:text-pink-400 underline decoration-pink-600 underline-offset-4 mb-10 block transition">
-             kelasinovatif.com
+            kelasinovatif.com
           </a>
 
           <div className="flex flex-wrap justify-center gap-10 text-xs font-bold text-slate-400 mb-10 uppercase tracking-widest">

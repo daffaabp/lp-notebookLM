@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { Loader2 } from 'lucide-react';
 
 const RegisterForm: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    whatsapp: ''
+    phone: '', // Renamed from whatsapp to phone for API consistency
+    source: 'lp-3'
   });
-  const [submitted, setSubmitted] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
 
   const [timeLeft, setTimeLeft] = useState({
     hours: 2,
@@ -32,30 +34,106 @@ const RegisterForm: React.FC = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const loadMidtransScript = (): Promise<void> => {
+    return new Promise((resolve, reject) => {
+      const scriptId = "midtrans-script";
+      if (document.getElementById(scriptId)) {
+        resolve();
+        return;
+      }
+
+      const clientKey = import.meta.env.VITE_MIDTRANS_CLIENT_KEY;
+      if (!clientKey) {
+        console.error("VITE_MIDTRANS_CLIENT_KEY is missing!");
+        reject(new Error("Configuration Error: Midtrans Client Key is missing."));
+        return;
+      }
+
+      const script = document.createElement("script");
+      const isSandbox = import.meta.env.VITE_MIDTRANS_SANDBOX === 'true';
+      script.src = isSandbox
+        ? "https://app.sandbox.midtrans.com/snap/snap.js"
+        : "https://app.midtrans.com/snap/snap.js";
+
+      script.id = scriptId;
+      script.setAttribute("data-client-key", clientKey);
+      script.async = true;
+      script.onload = () => resolve();
+      script.onerror = () => reject(new Error('Failed to load payment script'));
+      document.body.appendChild(script);
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate submission
-    setTimeout(() => {
-        setSubmitted(true);
-    }, 800);
+    setSubmitStatus('submitting');
+
+    try {
+      await loadMidtransScript();
+
+      const apiUrl = import.meta.env.VITE_API_URL || 'https://ujdbqubpdeuhbhrcbhan.supabase.co/functions/v1/submit-registration';
+
+      // Track InitiateCheckout
+      // @ts-ignore
+      if (window.fbq) {
+        // @ts-ignore
+        window.fbq('track', 'InitiateCheckout', {
+          value: 129000,
+          currency: 'IDR',
+          content_name: 'Webinar Publikasi',
+          num_ids: 1
+        });
+      }
+
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          source: formData.source,
+          finishUrl: `${window.location.origin}${window.location.pathname}?page=thank-you`
+        })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Gagal mendaftar');
+      }
+
+      // @ts-ignore
+      window.snap.pay(data.snapToken, {
+        onSuccess: function (result: any) {
+          window.location.href = `${window.location.origin}${window.location.pathname}?page=thank-you&order_id=${data.orderId}`;
+        },
+        onPending: function (result: any) {
+          alert("Menunggu pembayaran...");
+          console.log(result);
+        },
+        onError: function (result: any) {
+          alert("Pembayaran gagal!");
+          console.log(result);
+        },
+        onClose: function () {
+          alert('Anda menutup popup sebelum menyelesaikan pembayaran');
+          setSubmitStatus('idle');
+        }
+      });
+
+    } catch (error: any) {
+      alert(error.message);
+      setSubmitStatus('idle');
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
-  if (submitted) {
-    return (
-        <section id="register" className="py-24 px-4 bg-gradient-to-br from-teal-700 to-teal-900 relative">
-             <div className="max-w-xl mx-auto bg-white rounded-3xl p-10 shadow-2xl relative overflow-hidden text-center">
-                <div className="text-teal-500 text-6xl mb-6"><i className="fas fa-check-circle"></i></div>
-                <h2 className="text-3xl font-black text-teal-900 mb-4">Pendaftaran Berhasil!</h2>
-                <p className="text-slate-600 mb-6">Terima kasih, <strong>{formData.name}</strong>. Detail webinar dan tautan pembayaran telah dikirim ke WhatsApp <strong>{formData.whatsapp}</strong> dan Email <strong>{formData.email}</strong>.</p>
-                <button onClick={() => setSubmitted(false)} className="text-orange-500 font-bold underline">Daftar peserta lain</button>
-             </div>
-        </section>
-    )
-  }
 
   return (
     <section id="register" className="py-24 px-4 bg-gradient-to-br from-teal-700 to-teal-900 relative">
@@ -66,12 +144,12 @@ const RegisterForm: React.FC = () => {
 
         {/* 3 Arrow Down with Blink Animation */}
         <div className="flex justify-center items-center gap-2 mb-4 -mt-2">
-          <img 
+          <img
             src="/assets/right-arrow.avif"
             alt="Arrow down"
             className="w-10 h-7 md:w-14 md:h-9 arrow-blink rotate-90"
           />
-          <img 
+          <img
             src="/assets/right-arrow.avif"
             alt="Arrow down"
             className="w-10 h-7 md:w-14 md:h-9 arrow-blink rotate-90"
@@ -118,6 +196,7 @@ const RegisterForm: React.FC = () => {
               className="w-full border-2 border-slate-100 bg-slate-50 p-4 rounded-xl focus:border-teal-500 outline-none transition shadow-sm"
               placeholder="Masukkan Nama Anda"
               required
+              disabled={submitStatus === 'submitting'}
             />
           </div>
           <div>
@@ -131,26 +210,33 @@ const RegisterForm: React.FC = () => {
               className="w-full border-2 border-slate-100 bg-slate-50 p-4 rounded-xl focus:border-teal-500 outline-none transition shadow-sm"
               placeholder="Masukkan Email Anda"
               required
+              disabled={submitStatus === 'submitting'}
             />
           </div>
           <div>
             <label className="block text-sm font-black text-teal-900 mb-2 uppercase">Nomor WhatsApp *</label>
             <input
               type="tel"
-              name="whatsapp"
-              value={formData.whatsapp}
+              name="phone" // Changed to phone to match state
+              value={formData.phone}
               onChange={handleChange}
               autoComplete="off"
               className="w-full border-2 border-slate-100 bg-slate-50 p-4 rounded-xl focus:border-teal-500 outline-none transition shadow-sm"
               placeholder="08xxxxxxxxx"
               required
+              disabled={submitStatus === 'submitting'}
             />
           </div>
           <button
             type="submit"
-            className="w-full bg-green-600 hover:bg-green-500 text-white font-black py-5 rounded-2xl text-xl shadow-xl transition-all hover:scale-105 active:scale-95 uppercase tracking-widest"
+            disabled={submitStatus === 'submitting'}
+            className="w-full bg-green-600 hover:bg-green-500 text-white font-black py-5 rounded-2xl text-xl shadow-xl transition-all hover:scale-105 active:scale-95 uppercase tracking-widest flex justify-center items-center disabled:opacity-70 disabled:cursor-not-allowed"
           >
-            DAFTAR SEKARANG
+            {submitStatus === 'submitting' ? (
+              <><Loader2 className="animate-spin mr-2" /> MEMPROSES...</>
+            ) : (
+              "DAFTAR SEKARANG"
+            )}
           </button>
 
           {/* Payment Security */}
@@ -164,7 +250,7 @@ const RegisterForm: React.FC = () => {
           </div>
           <p className="text-center text-xs text-slate-400 mt-3 flex items-center justify-center gap-1">
             <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
+              <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z" />
             </svg>
             Kami menghormati privasi data Anda sesuai standar Google Workspace Enterprise.
           </p>
