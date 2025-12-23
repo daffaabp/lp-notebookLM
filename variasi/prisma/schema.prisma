@@ -12,14 +12,25 @@ model User {
   email         String    @unique
   phone         String
   source        String    // 'lp-1', 'lp-2', 'lp-3', 'lp-4'
+  affiliateId   String?   // Optional Foreign Key
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   
   payments      Payment[]
+  referrer      Affiliate? @relation(fields: [affiliateId], references: [id])
   
   @@index([email])
   @@index([source])
   @@index([createdAt])
+  @@index([affiliateId])
+}
+
+model Affiliate {
+  id        String   @id @default(uuid())
+  phone     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  users     User[]
 }
 
 model Payment {

@@ -1,9 +1,16 @@
 {
   "lockfileVersion": 1,
+<<<<<<< HEAD
   "configVersion": 1,
   "workspaces": {
     "": {
       "name": "webinar-notebooklm",
+=======
+  "configVersion": 0,
+  "workspaces": {
+    "": {
+      "name": "webinar-notebooklm-irt",
+>>>>>>> f59101d12568799a1c02434766eccfd7a7cc03ba
       "dependencies": {
         "lucide-react": "^0.562.0",
         "react": "^19.2.3",
