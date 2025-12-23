@@ -27,26 +27,24 @@ const Hero: React.FC = () => {
       </div>
 
       <div className="container mx-auto max-w-5xl relative z-10">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-primary mb-6 leading-tight">
-          Tinggalkan Cara Lama! Ubah 50+ Sumber Riset Menjadi Naskah Video & Buku Berkualitas dalam 1 Jam!
-        </h1>
-        <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto mb-8">
-          Gunakan sistem "Grounded AI" 2025 untuk menulis konten edukasi yang akurat, terverifikasi, dan bebas halusinasi—Khusus YouTuber, Podcaster, & Penulis.
+        <h3 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-primary mb-6 leading-[1.08]">
+          Naskah Mandek Karena Harus Telusuri Puluhan Sumber? <span className="text-secondary">NotebookLM</span> Bikin Riset & Nulis Konten Jadi Ide Viral!
+        </h3>
+        <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto mb-8 leading-snug">
+          Lelah riset harus buka banyak tab & cari info sana-sini? Cukup upload semua referensi, biarkan NotebookLM yang meringkas, merangkum insight penting, bahkan bantu bikin draft naskah hit, kerja lebih praktis, ide viral makin cepat tayang!
         </p>
         
-        <div className="inline-flex flex-col md:flex-row items-center gap-4 bg-dark text-white px-6 py-3 rounded-full font-bold text-sm md:text-base mb-8 shadow-lg">
-          <div className="flex items-center gap-2">
-            <Calendar className="w-5 h-5 text-secondary" />
+        <div className="mb-6 flex flex-col gap-2 items-center text-center mx-auto w-full max-w-md">
+          <div className="flex items-center gap-2 text-primary text-sm justify-center">
+            <Calendar className="w-4 h-4" />
             <span>Sabtu, 27 Desember 2025</span>
           </div>
-          <div className="hidden md:block w-px h-4 bg-slate-500"></div>
-          <div className="flex items-center gap-2">
-            <Clock className="w-5 h-5 text-secondary" />
+          <div className="flex items-center gap-2 text-primary text-sm justify-center">
+            <Clock className="w-4 h-4" />
             <span>19.00 - 21.00 WIB</span>
           </div>
-          <div className="hidden md:block w-px h-4 bg-slate-500"></div>
-          <div className="flex items-center gap-2">
-            <MapPin className="w-5 h-5 text-secondary" />
+          <div className="flex items-center gap-2 text-primary text-sm justify-center">
+            <MapPin className="w-4 h-4" />
             <span>Live via Zoom</span>
           </div>
         </div>

@@ -27,13 +27,12 @@ const Hero: React.FC = () => {
       <div className="max-w-5xl mx-auto relative z-10 flex flex-col items-center">
         {/* Pain-focused Hook & Localized Terminology - Semi Extreme */}
         <h1 className="text-4xl md:text-6xl font-extrabold leading-tight drop-shadow-sm">
-          "Otak Mau Meledak" Karena Harus Membaca  Tumpukan Jurnal? <br className="hidden md:block" />
-          <span className="text-red-400">Gunakan NotebookLM </span>
+        Otak Mau "Meledak" Karena Harus Baca Tumpukan Jurnal? <span className="text-green-300">NotebookLM solusinya!</span>
         </h1>
         
         {/* Subtitle with NotebookLM & Anti-Hallucination focus */}
         <p className="text-xl md:text-2xl mt-6 text-blue-100 italic max-w-3xl mx-auto leading-relaxed">
-          Membaca manual itu <strong>lambat & menyakitkan</strong>. Biarkan <strong>NotebookLM</strong> "melahap" ratusan halaman untuk Anda, <span className="text-orange-300 font-semibold">bebas halusinasi</span>, dan selamatkan kewarasan Anda sebelum terlambat.
+          Biarkan <strong>NotebookLM</strong> "melahap" ratusan halaman untuk Anda, <span className="text-orange-300 font-semibold">bebas halusinasi</span>, dan selamatkan kewarasan Anda sebelum terlambat.
         </p>
 
         {/* Webinar Details Card - Compact Version */}

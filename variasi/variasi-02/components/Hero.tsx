@@ -20,10 +20,11 @@ export const Hero: React.FC = () => {
 
       <div className="max-w-5xl mx-auto text-center relative z-10">
         <h1 className="text-3xl md:text-5xl font-black mb-5 leading-tight tracking-tight">
-          Masih Sering Merasa <span className="text-orange-500 italic">"Tenggelam"</span> dalam Ribuan Dokumen Kasus & Dihantui Rasa Takut Melewatkan Bukti Kunci?
+        Kepala <span className="text-orange-500 italic">"mau pecah"</span> memilah ribuan dokumen hukum & takut ada bukti terlewat? <br />
+          Cukup serahkan ke <span className="text-green-300 font-extrabold">NotebookLM</span>, semua jadi ringkas & jelas!
         </h1>
         <p className="text-base md:text-lg text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed">
-          Akhiri siklus kelelahan ini. Gunakan <strong>Google NotebookLM</strong> untuk memproses ribuan halaman kontrak, BAP, dan bukti digital menjadi ringkasan strategis ber-sitasi dalam hitungan detik—tanpa risiko halusinasi.
+          Biarkan <strong>NotebookLM</strong> yang menelusuri ribuan kontrak, BAP, dan dokumen Anda—jadi ringkasan bukti yang tajam, sitasi jelas, dan Anda tak perlu khawatir ada fakta atau pasal penting yang terlewat.
         </p>
         
         <div className="flex flex-col md:flex-row justify-center items-center gap-4 mb-10">

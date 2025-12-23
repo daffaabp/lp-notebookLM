@@ -28,10 +28,10 @@ const Hero: React.FC = () => {
       <div className="max-w-5xl mx-auto text-center relative z-10">
         <h1 className="text-4xl md:text-6xl font-black mb-8 leading-tight">
           "Mata Mau Copot" Baca Ribuan Jurnal Medis? <br className="hidden md:block" />
-          Berhenti Membahayakan Pasien dengan <span className="text-red-400">Riset Kuno!</span>
+          <span className="text-teal-200 font-extrabold">Pakai NotebookLM, solusi cerdasnya!</span>
         </h1>
         <p className="text-lg md:text-xl text-slate-200 mb-10 max-w-3xl mx-auto leading-relaxed">
-          Review manual itu <strong>lambat & rawan bias</strong>. Biarkan <strong>NotebookLM</strong> "membedah" ribuan studi klinis, <span className="text-orange-300 font-semibold">bebas halusinasi</span>, dan tegakkan diagnosa akurat sekarang juga.
+          Kalau Anda dokter, tenaga medis, atau peneliti kesehatan yang kewalahan menelaah tumpukan jurnal, <strong>NotebookLM</strong> siap <span className="text-orange-300 font-semibold">meringkas, memilah, dan mencari bukti ilmiah</span>, konversi 300 dokumen jadi ringkasan video, laporan, bahkan presentasi otomatis, bebas pusing, diagnosa makin akurat!
         </p>
 
         {/* Compact Info Card */}

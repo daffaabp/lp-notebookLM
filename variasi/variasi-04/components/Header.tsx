@@ -25,11 +25,12 @@ const Header: React.FC = () => {
         <div className="max-w-6xl mx-auto text-center relative z-10">
           {/* HOOK UTAMA */}
           <h1 className="text-3xl md:text-5xl font-black mb-8 leading-tight">
-            "Berapa Banyak Keputusan Bisnis yang Gagal Karena <span className="text-orange-500 italic">Data Penting Terkubur</span> di Ribuan Laporan, PDF, & Slide Presentasi?"
+            Bisnis nyaris gagal cuma karena <span className="text-orange-500 italic">data tercecer?</span> <br />
+            <span className="text-blue-300">Pakai NotebookLM. Keputusan bisnis langsung tepat, cepat!</span>
           </h1>
           
           <h2 className="text-lg md:text-2xl font-medium text-slate-300 mb-10 max-w-4xl mx-auto leading-relaxed">
-            NotebookLM bantu tim Anda temukan insight penting dari laporan dengan cepat, tanpa repot dan tanpa risiko halusinasi.
+            NotebookLM membantu perusahaan Anda mengubah <span className="text-orange-300 font-bold">300+ dokumen bisnis sekaligus</span> menjadi summary eksekutif dan otomatis<span className="text-blue-200 font-semibold"> slide presentasi</span> untuk paparan ke klien atau board meeting. Semua lebih cepat, tepat, tanpa risiko data tercecer!
           </h2>
           
           <div className="bg-white/10 backdrop-blur-md p-6 rounded-3xl border border-white/20 inline-flex flex-col md:flex-row gap-8 items-center shadow-2xl mb-8 hover:bg-white/15 transition-all">

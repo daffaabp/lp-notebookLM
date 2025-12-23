@@ -18,10 +18,11 @@ const Hero: React.FC = () => {
         />
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 relative z-10" style={{ marginTop: '15px' }}>
         
         <h1 className="text-3xl md:text-5xl font-bold text-primary mb-6 leading-tight max-w-4xl mx-auto">
-          Ubah Tumpukan Tugas Sekolah Anak & Catatan Rumah Menjadi Keteraturan Instan
+          Kewalahan bantu anak belajar karena materinya susah atau Ibu sendiri nggak paham? <br />
+          <span className="text-secondary font-extrabold">Tenang, ada NotebookLM siap jadi asisten belajar 24 jam!</span>
         </h1>
         <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-8 leading-relaxed">
           Manfaatkan <strong>NotebookLM</strong> sebagai asisten cerdas 24/7 untuk membantu belajar anak, 
