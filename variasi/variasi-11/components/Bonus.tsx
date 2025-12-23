@@ -75,7 +75,7 @@ const Bonus: React.FC = () => {
                 </div>
               </div>
 
-              {/* Akun Pro NotebookLM 1 bulan */}
+              {/* Akun Pro NotebookLM */}
               <div className="flex items-start gap-3">
                 <div className="flex-shrink-0 mt-0.5">
                   <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -83,8 +83,8 @@ const Bonus: React.FC = () => {
                   </svg>
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-white font-bold text-base mb-1">Akun Pro NotebookLM 1 Bulan</h3>
-                  <p className="text-slate-300 text-sm">Akses fitur premium NotebookLM selama 1 bulan penuh.</p>
+                  <h3 className="text-white font-bold text-base mb-1">Akun Pro NotebookLM</h3>
+                  <p className="text-slate-300 text-sm">Akses fitur premium NotebookLM.</p>
                 </div>
               </div>
             </div>

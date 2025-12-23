@@ -74,7 +74,7 @@ export const BonusFasilitas: React.FC = () => {
                     </svg>
                   </div>
                 </div>
-                <h3 className="text-white font-bold text-sm leading-tight">Akun Pro NotebookLM 1 Bulan</h3>
+                <h3 className="text-white font-bold text-sm leading-tight">Akun Pro NotebookLM</h3>
               </div>
             </div>
           </div>
