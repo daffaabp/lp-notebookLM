@@ -1,9 +1,9 @@
 {
   "lockfileVersion": 1,
-  "configVersion": 1,
+  "configVersion": 0,
   "workspaces": {
     "": {
-      "name": "webinar-notebooklm",
+      "name": "webinar-legal-ai",
       "dependencies": {
         "lucide-react": "^0.562.0",
         "react": "^19.2.3",

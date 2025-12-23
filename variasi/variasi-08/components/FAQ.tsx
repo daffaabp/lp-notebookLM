@@ -1,64 +1,54 @@
 import React, { useState } from 'react';
-import { Plus, Minus } from 'lucide-react';
-import SectionTitle from './SectionTitle';
-import { FAQItem } from '../types';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 
-const faqData: FAQItem[] = [
+const faqData = [
   {
-    id: 1,
-    question: "Apakah NotebookLM benar-benar gratis?",
-    answer: "Ya, Google NotebookLM tersedia gratis dalam mode eksperimen, mendukung hingga 50 sumber per notebook. Ini adalah kesempatan emas untuk peneliti."
+    question: "Apakah data hukum saya aman?",
+    answer: "Google berkomitmen bahwa untuk akun organisasi (Workspace), data tidak digunakan untuk melatih model AI dan tidak ditinjau oleh manusia. Keamanan dan kerahasiaan klien Anda tetap terjaga sesuai standar enterprise."
   },
   {
-    id: 2,
-    question: "Bagaimana dengan privasi data riset saya?",
-    answer: "Sangat aman. Google menjamin bahwa data yang diunggah di lingkungan Workspace tidak akan digunakan untuk melatih model AI umum atau ditinjau manusia tanpa izin."
+    question: "Apakah saya butuh kemampuan coding?",
+    answer: "Tidak sama sekali. NotebookLM dirancang dengan antarmuka yang sangat intuitif untuk pengguna non-teknis. Anda hanya perlu mengunggah dokumen dan mulai bertanya seperti chatting biasa."
   },
   {
-    id: 3,
-    question: "Bisakah ia membaca video YouTube?",
-    answer: "Ya, NotebookLM dapat menarik transkrip dari video YouTube publik untuk dijadikan basis riset Anda. Sangat berguna untuk mengutip kuliah online."
-  },
-  {
-    id: 4,
-    question: "Apakah mendukung Bahasa Indonesia?",
-    answer: "Ya, baik input sumber maupun hasil analisis sudah mendukung Bahasa Indonesia sepenuhnya. Anda bisa bertanya dalam Bahasa Indonesia meskipun sumbernya Bahasa Inggris."
+    question: "Apakah ada rekaman webinar?",
+    answer: "Ya, semua pendaftar akan mendapatkan akses rekaman eksklusif selamanya. Namun, kami sangat menyarankan hadir secara live untuk memanfaatkan sesi tanya jawab interaktif dengan narasumber."
   }
 ];
 
 const FAQ: React.FC = () => {
-  const [openId, setOpenId] = useState<number | null>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-  const toggleFAQ = (id: number) => {
-    setOpenId(openId === id ? null : id);
+  const toggleIndex = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <section className="py-24 bg-gray-50">
+    <section className="py-20 bg-white">
       <div className="container mx-auto px-6 max-w-3xl">
-        <SectionTitle>Pertanyaan Umum (FAQ)</SectionTitle>
+        <h2 className="text-3xl font-serif font-bold text-center text-legal-900 mb-12">
+          Pertanyaan Umum (FAQ)
+        </h2>
         
         <div className="space-y-4">
-          {faqData.map((item) => (
-            <div key={item.id} className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+          {faqData.map((item, index) => (
+            <div key={index} className="border border-gray-200 rounded-lg overflow-hidden">
               <button 
-                onClick={() => toggleFAQ(item.id)}
-                className="w-full text-left p-6 focus:outline-none flex justify-between items-center hover:bg-gray-50 transition-colors"
+                onClick={() => toggleIndex(index)}
+                className="w-full flex items-center justify-between p-5 text-left bg-white hover:bg-gray-50 transition-colors"
               >
-                <span className="font-bold text-gray-900 text-lg">{item.question}</span>
-                {openId === item.id ? (
-                  <Minus className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                <span className="font-bold text-legal-900 text-lg">{item.question}</span>
+                {openIndex === index ? (
+                  <ChevronUp className="w-5 h-5 text-gold-500" />
                 ) : (
-                  <Plus className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                  <ChevronDown className="w-5 h-5 text-gray-400" />
                 )}
               </button>
               
               <div 
-                className={`transition-all duration-300 ease-in-out overflow-hidden ${
-                  openId === item.id ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-                }`}
+                className={`overflow-hidden transition-all duration-300 ease-in-out ${openIndex === index ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'}`}
               >
-                <div className="p-6 pt-0 text-gray-600 leading-relaxed border-t border-gray-100 mt-2">
+                <div className="p-5 pt-0 text-gray-600 leading-relaxed border-t border-gray-100 bg-gray-50/50">
                   {item.answer}
                 </div>
               </div>
