@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Hero from './components/Hero';
-import SocialProof from './components/SocialProof';
 import Features from './components/Features';
 import SolutionHighlight from './components/SolutionHighlight';
 import SpeakerTestimonials from './components/SpeakerTestimonials';
@@ -55,7 +54,6 @@ const App: React.FC = () => {
     <div className="min-h-screen font-sans">
       <FacebookPixel />
       <Hero />
-      <SocialProof />
       <Features />
       <SolutionHighlight />
       <SpeakerTestimonials />

@@ -10,11 +10,25 @@ const Hero: React.FC = () => {
         <div className="absolute bottom-10 right-10 w-96 h-96 bg-blue-300 rounded-full blur-3xl"></div>
       </div>
 
+      {/* Logos Section - Positioned at corners with white header */}
+      <div className="absolute top-0 left-0 right-0 bg-white py-2 px-4 flex items-center justify-between z-20 shadow-sm">
+        <img 
+          src="/assets/logo kelas inovatif.avif" 
+          alt="Kelas Inovatif" 
+          className="h-8 md:h-10 w-auto object-contain"
+        />
+        <img 
+          src="/assets/notebook-logo.avif" 
+          alt="NotebookLM" 
+          className="h-4 md:h-5 w-auto object-contain"
+        />
+      </div>
+
       <div className="max-w-5xl mx-auto relative z-10 flex flex-col items-center">
         {/* Pain-focused Hook & Localized Terminology - Semi Extreme */}
         <h1 className="text-4xl md:text-6xl font-extrabold leading-tight drop-shadow-sm">
-          "Otak Mau Meledak" Karena Tumpukan Jurnal? <br className="hidden md:block" />
-          Berhenti Menyiksa Diri dengan <span className="text-red-400">Cara Kuno!</span>
+          "Otak Mau Meledak" Karena Harus Membaca  Tumpukan Jurnal? <br className="hidden md:block" />
+          <span className="text-red-400">Gunakan NotebookLM </span>
         </h1>
         
         {/* Subtitle with NotebookLM & Anti-Hallucination focus */}
@@ -54,6 +68,13 @@ const Hero: React.FC = () => {
            </div>
            <div className="text-5xl md:text-6xl font-extrabold text-white mt-1 tracking-tight drop-shadow-lg">
               Rp 129.000
+           </div>
+           {/* Bonus Badge */}
+           <div className="mt-4 inline-flex items-center gap-2 bg-gradient-to-r from-yellow-400/20 to-orange-400/20 border-2 border-yellow-400/50 text-yellow-200 px-4 py-2 rounded-full backdrop-blur-sm">
+             <svg className="w-5 h-5 text-yellow-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+             </svg>
+             <span className="text-sm md:text-base font-bold">Bonus: Akun Pro NotebookLM 1 Bulan (Senilai Rp 309.000)</span>
            </div>
         </div>
 

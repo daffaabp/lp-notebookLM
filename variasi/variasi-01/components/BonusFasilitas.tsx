@@ -67,14 +67,14 @@ const BonusFasilitas: React.FC = () => {
                 <h3 className="text-gray-900 font-bold text-base md:text-sm flex-1">Ebook Materi Prompting untuk Penulisan Karya Ilmiah</h3>
               </div>
 
-              {/* Akun Pro NotebookLM 1 bulan */}
+              {/* Akun Pro NotebookLM */}
               <div className="bg-blue-50 rounded-full px-4 py-2.5 border border-blue-100 flex items-center gap-2.5 hover:bg-blue-100 transition-colors">
                 <div className="bg-blue-500 rounded-full p-1.5 flex-shrink-0">
                   <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                   </svg>
                 </div>
-                <h3 className="text-gray-900 font-bold text-base md:text-sm flex-1">Akun Pro NotebookLM 1 Bulan</h3>
+                <h3 className="text-gray-900 font-bold text-base md:text-sm flex-1">Akun Pro NotebookLM</h3>
               </div>
             </div>
 

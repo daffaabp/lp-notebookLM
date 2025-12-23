@@ -10,8 +10,22 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <header className="bg-gradient-to-br from-teal-700 to-teal-900 text-white pt-12 pb-16 px-4 border-b-8 border-teal-500">
-      <div className="max-w-5xl mx-auto text-center">
+    <header className="bg-gradient-to-br from-teal-700 to-teal-900 text-white pt-12 pb-16 px-4 border-b-8 border-teal-500 relative overflow-hidden">
+      {/* Logos Section - Positioned at corners with white header */}
+      <div className="absolute top-0 left-0 right-0 bg-white py-2 px-4 flex items-center justify-between z-20 shadow-sm">
+        <img 
+          src="/assets/logo kelas inovatif.avif" 
+          alt="Kelas Inovatif" 
+          className="h-8 md:h-10 w-auto object-contain"
+        />
+        <img 
+          src="/assets/notebook-logo.avif" 
+          alt="NotebookLM" 
+          className="h-4 md:h-5 w-auto object-contain"
+        />
+      </div>
+
+      <div className="max-w-5xl mx-auto text-center relative z-10">
         <h1 className="text-4xl md:text-6xl font-black mb-8 leading-tight">
           "Mata Mau Copot" Baca Ribuan Jurnal Medis? <br className="hidden md:block" />
           Berhenti Membahayakan Pasien dengan <span className="text-red-400">Riset Kuno!</span>
@@ -21,7 +35,7 @@ const Hero: React.FC = () => {
         </p>
 
         {/* Compact Info Card */}
-        <div className="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/20 inline-flex flex-col sm:flex-row gap-5 items-center justify-center shadow-xl mb-10 max-w-3xl mx-auto">
+        <div className="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/20 inline-flex flex-col sm:flex-row gap-5 items-center justify-center shadow-xl mb-6 max-w-3xl mx-auto">
           <div className="text-center sm:text-right min-w-[140px]">
             <p className="text-teal-200 text-[10px] font-bold uppercase tracking-widest mb-1">Investasi Ilmu</p>
             <div className="flex items-center justify-center sm:justify-end gap-2">
@@ -39,6 +53,14 @@ const Hero: React.FC = () => {
               <span className="text-base">Sabtu, 27 Des 2025 | 19.00 WIB</span>
             </div>
           </div>
+        </div>
+
+        {/* Bonus Badge */}
+        <div className="mb-6 inline-flex items-center gap-2 bg-gradient-to-r from-yellow-400/25 to-orange-400/25 border-2 border-yellow-300/50 text-yellow-100 px-4 py-2 rounded-full backdrop-blur-sm shadow-lg">
+          <svg className="w-5 h-5 text-yellow-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+          </svg>
+          <span className="text-sm md:text-base font-bold">Bonus: Akun Pro NotebookLM 1 Bulan (Senilai Rp 309.000)</span>
         </div>
 
         <div>

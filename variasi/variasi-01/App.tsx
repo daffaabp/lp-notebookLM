@@ -3,7 +3,6 @@ import Hero from './components/Hero';
 import PainPoints from './components/PainPoints';
 import Solution from './components/Solution';
 import MidCTA from './components/MidCTA';
-import SocialProof from './components/SocialProof';
 import Speaker from './components/Speaker';
 import Testimonials from './components/Testimonials';
 import BonusFasilitas from './components/BonusFasilitas';
@@ -89,7 +88,6 @@ const App: React.FC = () => {
       <PainPoints />
       <Solution />
       <MidCTA />
-      <SocialProof />
       <Speaker />
       <Testimonials />
       <BonusFasilitas />
