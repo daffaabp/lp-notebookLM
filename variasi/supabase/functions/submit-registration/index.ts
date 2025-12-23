@@ -16,7 +16,7 @@ serve(async (req) => {
     }
 
     try {
-        const { name, email, phone, source, finishUrl } = await req.json()
+        const { name, email, phone, source, finishUrl, affiliateCode } = await req.json()
 
         // Validate input
         if (!name || !email || !phone || !source) {
@@ -87,6 +87,52 @@ serve(async (req) => {
             userId = newUser.id
         }
 
+        // --- NEW: Affiliate Logic ---
+        if (affiliateCode) {
+            // Find affiliate by exact phone match
+            const { data: affiliate } = await supabase
+                .from('Affiliate')
+                .select('id')
+                .eq('phone', affiliateCode)
+                .maybeSingle()
+
+            if (affiliate) {
+                // Link user to affiliate if not already linked (or update it, let's just update)
+                await supabase
+                    .from('User')
+                    .update({ affiliateId: affiliate.id })
+                    .eq('id', userId)
+            }
+        }
+        // ----------------------------
+
+        // --- NEW: Check for Existing Pending Payment ---
+        const { data: existingPayment } = await supabase
+            .from('Payment')
+            .select('snapToken, snapRedirectUrl, orderId')
+            .eq('userId', userId)
+            .eq('status', 'pending')
+            .order('createdAt', { ascending: false })
+            .limit(1)
+            .maybeSingle()
+
+        if (existingPayment && existingPayment.snapToken && existingPayment.snapRedirectUrl) {
+            console.log("Found existing pending payment, returning it.")
+            return new Response(
+                JSON.stringify({
+                    snapToken: existingPayment.snapToken,
+                    redirectUrl: existingPayment.snapRedirectUrl,
+                    orderId: existingPayment.orderId,
+                    isResumed: true
+                }),
+                {
+                    headers: { ...CorsHeaders, 'Content-Type': 'application/json' },
+                    status: 200
+                }
+            )
+        }
+        // ---------------------------------------------
+
         const midtransServerKey = Deno.env.get('MIDTRANS_SERVER_KEY')
 
         if (!midtransServerKey) {
@@ -115,6 +161,7 @@ serve(async (req) => {
         else if (source === 'lp-9' || source === 'variasi-09') baseUrl = 'http://localhost:3009';
         else if (source === 'lp-10' || source === 'variasi-10') baseUrl = 'http://localhost:3010';
         else if (source === 'lp-11' || source === 'variasi-11') baseUrl = 'http://localhost:3011';
+        else if (source === 'lp-12' || source === 'variasi-12') baseUrl = 'http://localhost:3012';
 
         // Override with PROD_URL if configured in Environment Variables
         const prodUrl = Deno.env.get(`PROD_URL_${source.toUpperCase().replace('-', '_')}`);
