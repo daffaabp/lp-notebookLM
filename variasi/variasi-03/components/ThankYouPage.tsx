@@ -37,7 +37,7 @@ const ThankYouPage: React.FC = () => {
 
                 if (data.valid) {
                     setStatus('success');
-                    setGroupLink(data.groupLink || 'https://chat.whatsapp.com/BwWHFan9wFV2Snr9RKDoLA');
+                    setGroupLink(data.groupLink || 'https://chat.whatsapp.com/BOqKjdH2A4PIHwFwhwPkev');
                     // Track Purchase/CompleteRegistration
                     // @ts-ignore
                     if (window.fbq) {

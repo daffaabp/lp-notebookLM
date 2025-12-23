@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Hero from './components/Hero';
 import ProblemSolution from './components/ProblemSolution';
 import MiddleCTA from './components/MiddleCTA';
+import NotebookLMResults from './components/NotebookLMResults';
 import Speaker from './components/Speaker';
 import Testimonials from './components/Testimonials';
 import Bonus from './components/Bonus';
@@ -86,6 +87,7 @@ const App: React.FC = () => {
       <main className="flex-grow">
         <ProblemSolution />
         <MiddleCTA />
+        <NotebookLMResults />
         <Speaker />
         <Testimonials />
         <Bonus />

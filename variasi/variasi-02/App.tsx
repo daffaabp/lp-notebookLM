@@ -3,6 +3,7 @@ import { Hero } from './components/Hero';
 import { PainPoints } from './components/PainPoints';
 import { Solution } from './components/Solution';
 import { MidCTA } from './components/MidCTA';
+import NotebookLMResults from './components/NotebookLMResults';
 import { Speaker } from './components/Speaker';
 import { Testimonials } from './components/Testimonials';
 import { RegistrationForm } from './components/RegistrationForm';
@@ -68,6 +69,7 @@ const App: React.FC = () => {
       <PainPoints />
       <Solution />
       <MidCTA onRegisterClick={scrollToRegister} />
+      <NotebookLMResults />
       <Speaker />
       <Testimonials />
       <BonusFasilitas />

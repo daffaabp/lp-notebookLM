@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Hero from './components/Hero';
 import Features from './components/Features';
 import SolutionHighlight from './components/SolutionHighlight';
+import NotebookLMResults from './components/NotebookLMResults';
 import SpeakerTestimonials from './components/SpeakerTestimonials';
 import Testimonials from './components/Testimonials';
 import RegistrationForm from './components/RegistrationForm';
@@ -56,6 +57,7 @@ const App: React.FC = () => {
       <Hero />
       <Features />
       <SolutionHighlight />
+      <NotebookLMResults />
       <SpeakerTestimonials />
       <Testimonials />
       <RegistrationForm />

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import PainPoints from './components/PainPoints';
 import Solution from './components/Solution';
+import NotebookLMResults from './components/NotebookLMResults';
 import { BonusFasilitas } from './components/BonusFasilitas';
 import Guarantee from './components/Guarantee';
 import Registration from './components/Registration';
@@ -57,6 +58,7 @@ const App: React.FC = () => {
       <main className="flex-grow">
         <PainPoints />
         <Solution />
+        <NotebookLMResults />
         <BonusFasilitas />
         <Guarantee />
         <Testimonials />
