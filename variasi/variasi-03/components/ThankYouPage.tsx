@@ -102,7 +102,7 @@ const ThankYouPage: React.FC = () => {
                     </div>
                     <h1 className="text-3xl font-bold mb-2 text-slate-900">Pembayaran Berhasil!</h1>
                     <p className="text-slate-600 mb-3 font-sans">
-                        Terima kasih telah mendaftar pada event webinar ini.
+                        Terima kasih telah mendaftar pada event webinar Workshop NotebookLM ini.
                     </p>
                     <p className="text-sm font-semibold text-slate-700 mb-2 font-sans">
                         📅 Sabtu, 27 Desember 2025
