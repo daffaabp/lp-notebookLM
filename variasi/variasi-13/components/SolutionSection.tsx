@@ -8,21 +8,21 @@ const SolutionSection: React.FC = () => {
         <div className="text-center mb-16 max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">NotebookLM: Solusi Riset Berbasis Sumber</h2>
           <p className="text-lg text-gray-700 leading-relaxed italic">
-            Berbeda dengan ChatGPT yang "tahu segalanya dari internet", NotebookLM hanya bekerja berdasarkan dokumen yang <strong className="text-blue-700">ANDA</strong> berikan, menjamin akurasi mutlak melalui <strong>Source-Grounding</strong>.
+          Berbeda dengan ChatGPT yang "tahu segalanya dari internet", NotebookLM hanya bekerja berdasarkan dokumen yang <strong className="text-blue-700">ANDA</strong> berikan, menjamin akurasi mutlak melalui <strong>Source-Grounding</strong>.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Benefits List */}
           <div className="order-2 md:order-1">
-            <h3 className="text-2xl font-bold mb-8 text-gray-800 border-l-4 border-blue-600 pl-4">Hasil Akhir yang Akan Anda Capai:</h3>
+            <h3 className="text-2xl font-bold mb-8 text-gray-800 border-l-4 border-blue-600 pl-4">Manfaat Nyata yang Akan Anda Dapatkan:</h3>
             <ul className="space-y-6 text-lg">
               <li className="flex items-start">
                 <div className="mt-1 mr-4 bg-green-100 p-1 rounded-full">
                     <CheckIcon className="w-5 h-5 text-green-600" />
                 </div>
                 <span>
-                    <strong>Hemat Waktu 70%:</strong> Selesaikan tinjauan literatur atau riset pasar dalam hitungan menit, bukan minggu.
+                    <strong>Pekerjaan Riset Jadi Kilat:</strong> Tidak perlu lagi baca halaman demi halaman—cukup upload sumber Anda, jawaban lengkap siap dalam hitungan menit.
                 </span>
               </li>
               <li className="flex items-start">
@@ -30,7 +30,7 @@ const SolutionSection: React.FC = () => {
                     <CheckIcon className="w-5 h-5 text-green-600" />
                 </div>
                 <span>
-                    <strong>Akurasi 100%:</strong> Setiap jawaban disertai sitasi nomor yang merujuk langsung ke halaman dokumen asli.
+                    <strong>Jawaban Terverifikasi:</strong> Semua ringkasan & insight selalu dilengkapi referensi asli agar Anda mudah cross-check kebenarannya.
                 </span>
               </li>
               <li className="flex items-start">
@@ -38,7 +38,7 @@ const SolutionSection: React.FC = () => {
                     <CheckIcon className="w-5 h-5 text-green-600" />
                 </div>
                 <span>
-                    <strong>Multi-Format:</strong> Otomatis buat Podcast (Audio), Video Explainer, Mind Map, dan Slide Presentasi dalam sekali klik.
+                    <strong>Hasil Fleksibel Sesuai Kebutuhan:</strong> Satu klik bisa langsung dapat infografis, podcast, atau slide yang siap digunakan untuk presentasi, tugas, atau konten.
                 </span>
               </li>
             </ul>
@@ -58,7 +58,7 @@ const SolutionSection: React.FC = () => {
               </p>
               <a 
                 href="#register" 
-                className="block w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl transition-colors shadow-lg text-lg"
+                className="block w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 rounded-xl transition-colors shadow-lg text-lg"
               >
                 Amankan Kursi Saya
               </a>

@@ -13,47 +13,47 @@ const NotebookLMResultsSection: React.FC = () => {
     {
       name: 'Ringkasan Audio',
       description: 'Dengarkan ringkasan dokumen dalam format audio sambil beraktivitas.',
-      image: '/result/audio-overview.avif'
+      image: '/result/ringkasan audio.avif'
     },
     {
       name: 'Ringkasan Video',
       description: 'Ubah dokumen kompleks menjadi video explainer yang mudah dipahami.',
-      image: '/result/video-overview.avif'
+      image: '/result/ringakasan video.avif'
     },
     {
       name: 'Peta Pikiran',
       description: 'Visualisasikan hubungan antar konsep dengan mind map interaktif.',
-      image: '/result/mind-map.avif'
+      image: '/result/peta pikiran.avif'
     },
     {
       name: 'Laporan Otomatis',
       description: 'Generate laporan profesional otomatis dari berbagai sumber dokumen.',
-      image: '/result/reports.avif'
+      image: '/result/laporan.avif'
     },
     {
       name: 'Kartu Flash',
       description: 'Buat kartu flashcard untuk pembelajaran efektif dan menghafal konsep.',
-      image: '/result/flashcards.avif'
+      image: '/result/flash card.avif'
     },
     {
       name: 'Kuis Interaktif',
       description: 'Uji pemahaman dengan kuis interaktif yang di-generate otomatis.',
-      image: '/result/quiz.avif'
+      image: '/result/kuis.avif'
     },
     {
       name: 'Infografik',
       description: 'Transform data kompleks menjadi infografik menarik dan mudah dipahami.',
-      image: '/result/infographic.avif'
+      image: '/result/infografis.avif'
     },
     {
       name: 'Presentasi Slide',
       description: 'Buat slide presentasi profesional dengan sitasi sumber yang akurat.',
-      image: '/result/slide-deck.avif'
+      image: '/result/slide presentasi.avif'
     },
     {
       name: 'Tabel Data',
       description: 'Ekstrak dan organisasi data dalam format tabel yang rapi.',
-      image: '/result/data-table.avif'
+      image: '/result/tabel.avif'
     }
   ];
 

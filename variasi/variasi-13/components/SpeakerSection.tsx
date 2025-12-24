@@ -15,7 +15,7 @@ const SpeakerSection: React.FC = () => {
                     className="relative w-full h-full object-cover rounded-2xl shadow-lg border-4 border-white transition-all duration-500" 
                 />
             </div>
-        </div>
+        </div>z
         
         <div className="flex-1 text-center md:text-left">
           <h3 className="text-3xl md:text-4xl font-black mb-2 text-gray-900 uppercase tracking-tight">M. ARIANTO</h3>

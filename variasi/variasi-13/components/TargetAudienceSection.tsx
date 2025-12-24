@@ -58,11 +58,13 @@ const TargetAudienceSection: React.FC = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {audiences.map((item, index) => (
             <div key={index} className="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-gray-500 transition duration-300 hover:shadow-2xl hover:shadow-blue-900/20 group">
-              <div className={`w-12 h-12 rounded-lg flex items-center justify-center mb-4 ${item.accent}`}>
-                <item.icon className="w-7 h-7" />
+              <div className="flex items-center gap-3 mb-3">
+                <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${item.accent}`}>
+                  <item.icon className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-bold group-hover:text-blue-300 transition-colors">{item.title}</h3>
               </div>
-              <h3 className="text-xl font-bold mb-3 group-hover:text-blue-300 transition-colors">{item.title}</h3>
-              <p className="text-gray-400 leading-relaxed text-sm">
+              <p className="text-gray-400 leading-relaxed text-base">
                 {item.desc}
               </p>
             </div>

@@ -11,12 +11,12 @@ const HeroSection: React.FC = () => {
 
       <div className="relative z-10 max-w-4xl mx-auto">
         <h1 className="text-3xl md:text-6xl font-extrabold mb-4 md:mb-6 leading-tight tracking-tight drop-shadow-sm">
-          Berhenti Tenggelam dalam Tumpukan Dokumen! <br />
-          <span className="text-yellow-300">Kuasai "Otak Kedua" Anda</span> dengan NotebookLM
+          Terlalu Banyak Bacaan & Data, Waktu Selalu Kurang? <br />
+          <span className="text-yellow-300">NotebookLM siap bantu Anda</span> ringkas & pahami cepat!
         </h1>
         
         <p className="text-base md:text-2xl mb-6 md:mb-8 opacity-90 max-w-3xl mx-auto font-normal leading-relaxed">
-          Ubah ratusan halaman PDF, Website, Video YouTube, dan Audio menjadi asisten riset cerdas yang 100% akurat tanpa halusinasi AI.
+          Ubah ratusan halaman PDF, Website, Video YouTube, dan Audio menjadi asisten riset cerdas yang 100% akurat dengan NotebookLM.
         </p>
         
         {/* Date & Time Widget Box */}

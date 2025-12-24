@@ -15,13 +15,22 @@ import Footer from './components/Footer';
 import AffiliatePage from './components/AffiliatePage';
 import AdminPage from './components/AdminPage';
 import ThankYouPage from './components/ThankYouPage';
+import TermsOfService from './components/TermsOfService';
+import PrivacyPolicy from './components/PrivacyPolicy';
 
 const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<string>('home');
+  const [currentPath, setCurrentPath] = useState<string>(window.location.pathname);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const page = urlParams.get('page');
+
+    // Check pathname for terms/privacy
+    if (window.location.pathname === '/terms-of-service' || window.location.pathname === '/privacy-policy') {
+      setCurrentPath(window.location.pathname);
+      return;
+    }
 
     if (page === 'affiliate' || page === 'admin' || page === 'thank-you') {
       setCurrentPage(page);
@@ -42,6 +51,12 @@ const App: React.FC = () => {
 
     // Listen for popstate (back/forward button)
     const handlePopState = () => {
+      const path = window.location.pathname;
+      if (path === '/terms-of-service' || path === '/privacy-policy') {
+        setCurrentPath(path);
+        return;
+      }
+
       const params = new URLSearchParams(window.location.search);
       const pageParam = params.get('page');
       if (pageParam === 'affiliate' || pageParam === 'admin' || pageParam === 'thank-you') {
@@ -51,6 +66,7 @@ const App: React.FC = () => {
       } else {
         setCurrentPage('home');
       }
+      setCurrentPath(path);
     };
 
     window.addEventListener('popstate', handlePopState);
@@ -61,14 +77,26 @@ const App: React.FC = () => {
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      const link = target.closest('a[href^="?page="]');
+      const link = target.closest('a');
       if (link) {
-        e.preventDefault();
         const href = link.getAttribute('href');
         if (href) {
-          const page = href.split('=')[1];
-          window.history.pushState({}, '', href);
-          setCurrentPage(page);
+          // Handle pathname navigation (terms/privacy)
+          if (href === '/terms-of-service' || href === '/privacy-policy') {
+            e.preventDefault();
+            window.history.pushState({}, '', href);
+            setCurrentPath(href);
+            return;
+          }
+          
+          // Handle query param navigation
+          if (href.startsWith('?page=')) {
+            e.preventDefault();
+            const page = href.split('=')[1];
+            window.history.pushState({}, '', href);
+            setCurrentPage(page);
+            setCurrentPath(window.location.pathname);
+          }
         }
       }
     };
@@ -77,7 +105,15 @@ const App: React.FC = () => {
     return () => document.removeEventListener('click', handleClick);
   }, []);
 
-  // Render based on current page
+  // Render based on current path or page
+  if (currentPath === '/terms-of-service') {
+    return <TermsOfService />;
+  }
+
+  if (currentPath === '/privacy-policy') {
+    return <PrivacyPolicy />;
+  }
+
   if (currentPage === 'affiliate') {
     return <AffiliatePage />;
   }
